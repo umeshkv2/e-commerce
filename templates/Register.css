@@ -1,0 +1,81 @@
+body
+{
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	background: lightgrey;
+}
+.registerform
+{
+	width: 300px;
+	padding: 40px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	background: black;
+	text-align: center;
+}
+
+.registerform h2
+{
+	color: white;
+	text-transform: uppercase;
+	font-weight: 300;
+}
+.registerform input[type = "email"], .registerform input[type = "password"], .registerform input[type = "text"]
+{
+  border:0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #3498db;
+	padding: 14px 10px;
+	width: 200px;
+	outline: none;
+	color: white;
+	border-radius: 24px;
+	transition: 0.25s;
+
+}
+.registerform input[type = "email"]:hover, .registerform input[type = "password"]:hover , .registerform input[type = "text"]:hover
+{
+	width: 280px;
+	border-color: #2ecc71;
+
+}
+.registerform input[type = "submit"]
+{
+  border:0;
+  background: #4d7dc4;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #2ecc71;
+	padding: 14px 40px;
+	outline: none;
+	color: white;
+	border-radius: 24px;
+	transition: 0.25s;
+}
+.registerform input[type = "submit"]:hover
+{
+  background: #2ecc71;
+	cursor: pointer;
+}
+.registerform a
+{
+	text-decoration: none;
+}
+.registerform a:hover
+{
+	text-decoration: none;
+	color: #2ecc71;
+}
+.registerform code
+{
+	color: white;
+	font-size: 16px;
+}
+
