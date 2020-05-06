@@ -53,25 +53,58 @@ body
   margin: 20px auto;
   text-align: center;
   border: 2px solid #2ecc71;
-	padding: 14px 40px;
-	outline: none;
-	color: white;
-	border-radius: 24px;
-	transition: 0.25s;
+  padding: 14px 40px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
 }
 .loginform input[type = "submit"]:hover
 {
   background: #2ecc71;
 	cursor: pointer;
 }
-.loginform a
+#a1
 {
 	text-decoration: none;
 	color: white;
 }
-.loginform a:hover
+#a1:hover
 {
 	text-decoration: none;
-	color:
-	#2ecc71;
+	color:#2ecc71;
+}
+.loginform p
+{
+	display: flex;
+	flex-direction: row;
+	color:white;
+}
+.loginform p:before,.loginform p:after {
+  content: "";
+  flex: 1 1;
+  border-bottom: 1px solid white;
+  margin: auto;
+  opacity: 0.5;
+}
+#a2
+{
+  border:0;
+  background: #4d7dc4;
+  display: inline-block;
+  margin: 10px auto;
+  text-align: center;
+  text-decoration: none;
+  font-size: 13px;
+  border: 2px solid #2ecc71;
+  padding: 14px 40px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+}
+#a2:hover
+{
+  background: #2ecc71;
+	cursor: pointer;
 }

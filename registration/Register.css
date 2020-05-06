@@ -67,11 +67,15 @@ body
 .registerform a
 {
 	text-decoration: none;
-	color: #4d7dc4;
 }
 .registerform a:hover
 {
 	text-decoration: none;
-	color:
-	#2ecc71;
+	color: #2ecc71;
 }
+.registerform code
+{
+	color: white;
+	font-size: 16px;
+}
+
