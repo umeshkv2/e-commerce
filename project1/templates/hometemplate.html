@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <link rel="stylesheet" type="text/css" href="../static/bootstrap-4.0.0-dist/css/bootstrap.css">
+    <script src="../static/bootstrap-4.0.0-dist/js/bootstrap.js"></script>
+    <script src="../static/jquery.js"></script>
+    <script src="../static/hometemplate.js"></script>
+    <link rel="stylesheet" href="../static/hometemplate.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script>
+    $(document).ready(function(e) {
+        $("#b1").click(function(e) {
+    		$("#menu").toggle();
+        });
+    });
+    </script>
+
+    <title></title>
+  </head>
+  <body>
+    <!-- container 1 start -->
+    <div class="container-fluid p-0">
+    <!-- dropdown menu start -->
+    <div class="dropdown">
+    <button id="b1" ><img src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png"></button>
+    <div class="dropdown-menu" id="menu">
+    <p class="text-center"><b>Shop by category</b><p>
+    <a href="#" class="dropdown-item" >mens fashion</a>
+    <a href="#" class="dropdown-item" >womens fashion</a>
+    <a href="#" class="dropdown-item" >kids</a>
+    <a href="" class="dropdown-item" >skin care</a>
+    <a href="#" class="dropdown-item ">watches</a>
+    <a href="#" class="dropdown-item ">handbags</a>
+    <a href="#" class="dropdown-item ">glasses</a>
+    <a href="#" class="dropdown-item ">bags</a>
+    <a href="#" class="dropdown-item ">beds</a>
+    <a href="#" class="dropdown-item ">tables</a>
+    <a href="#" class="dropdown-item ">door</a>
+    <a href="#" class="dropdown-item ">spices</a>
+    <a href="#" class="dropdown-item ">food and vegetables</a>
+    <hr>
+    <p class="text-center" style><b>service</b><p>
+      <a href="#" class="dropdown-item ">your account</a>
+      <a href="#" class="dropdown-item ">customer service</a>
+    </div>
+    <!-- dropdown end -->
+    <form class="search" action="">
+  <input type="text" name ="" placeholder="search here" name="search">
+  <button type="submit"><i class="fa fa-search "></i></button>
+  <span id="cart"><i class='fas fa-shopping-cart' style='font-size:24px'><a href="#">cart</a></i></span>
+</form>
+    </div>
+    </div>
+  </body>
+</html>

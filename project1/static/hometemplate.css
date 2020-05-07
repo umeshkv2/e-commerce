@@ -1,0 +1,53 @@
+.container-fluid.p-0
+{
+  background: #8338ec;
+}
+#b1
+{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 3px;
+}
+#b1:hover{
+  opacity: 0.8;
+}
+#b1 img
+{
+  height: 25px;
+}
+.search
+{
+  float: right;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+.search input[type="text"]
+{
+  border-radius: 5px;
+  width:400px;
+  padding-left: 10px;
+}
+.search button
+{
+  border-radius: 5px;
+  cursor: pointer;
+}
+.search button:hover
+{
+  border-radius: 5px;
+  cursor: pointer;
+  opacity: 0.8;
+}
+#cart
+{
+  margin-left: 20px;
+  cursor: pointer;
+}
+#cart i a
+{
+  color: white;
+  font-size: 15px;
+  text-decoration: none;
+}

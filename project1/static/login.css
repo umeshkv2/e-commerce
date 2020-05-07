@@ -24,7 +24,6 @@ body
 .loginform h1
 {
 	color: white;
-	text-transform: uppercase;
 	font-weight: 500;
 }
 .loginform input[type = "email"], .loginform input[type = "password"], .loginform input[type = "text"]
