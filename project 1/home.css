@@ -1,0 +1,170 @@
+body {
+    
+}
+.first {
+    height: 100px;
+    width: 100%;
+    background-color: thistle;
+}
+.first_a {
+    position: absolute;
+    margin-left: 15px;
+    margin-top: 15px;
+    height: 5%;
+    width: 2%;
+}
+#first_b {
+    position: absolute;
+    color: rgb(54);
+    margin-top: 7px;
+    margin-left: 70px;
+    font-size: 40px;
+}
+label {
+    margin-left: 350px;
+}
+.header_1 {
+    margin-left: 1250px;
+    margin-top: -60px;
+     
+    
+}
+.header_img {
+    position: relative;
+    margin-left:1300px;
+    margin-top: -85px;
+    
+    
+}
+
+#myInput {
+    background-image: url('https://www.konfest.com/wp-content/uploads/2019/05/Konfest-PNG-JPG-Image-Pic-Photo-Free-Download-Royalty-Unlimited-clip-art-sticker-icons-search-symbol-find-magnifying-glass-63.png');
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 50%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+    margin-top: 20px;
+  }
+.second {
+    position: relative;
+    height: 200px;
+    width: 100%;
+    background-color: rgb(228, 222, 235);
+    
+}
+#third {
+    
+    position: relative;
+    height: 600px;
+    width: 100%;
+    background-color: rgb(203, 218, 189);
+    margin-top: -30px;
+    
+}
+.fashion{
+    
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 40px;
+    
+}
+.third_a {
+    position: absolute;
+    height: 459px;
+    width: 450px;
+    background-color: white;
+    margin-top: 2px;
+    margin-left: 50px;
+}
+.third_aimg{
+    height: 400px;
+    width: 450px;
+}
+.font_a {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    font-style: italic;
+    color: black;
+    
+}
+
+a {
+    text-decoration: none;
+}
+
+.third_b {
+    position: absolute;
+    height: 450px;
+    width: 450px;
+    background-color: white;
+    margin-top: 2px;
+    margin-left: 525px;
+}
+.third_bimg{
+    height: 400px;
+    width: 450px;
+}
+.third_c {
+    position: absolute;
+    height: 450px;
+    width: 450px;
+    background-color: white;
+    margin-top: 2px;
+    margin-left: 1000px;
+}
+.third_cimg{
+    height: 400px;
+    width: 450px;
+}
+
+#fourth {
+    position: relative;
+    height: 600px;
+    width: 100%;
+    background-color: rgb(203, 218, 189);
+    margin-top: -30px;
+}
+    
+#five {
+    position: relative;
+    height: 600px;
+    width: 100%;
+    background-color: rgb(203, 218, 189);
+    margin-top: -30px;
+}
+#six {
+    position: relative;
+    height: 600px;
+    width: 100%;
+    background-color: rgb(203, 218, 189);
+    margin-top: -30px;
+}
+
+
+
+.b2{
+    height: 330px;
+    width: 100%;
+    background-color: darkslategrey;
+    position: relative;
+    margin-top: -15px;
+    
+    }
+    .b4{
+        margin-left: 20px;
+    }
+.material-icons{
+    margin-left: 80px;
+    margin-top: 40px;
+
+}
+.b5{
+    margin-left: 600px;
+    margin-top: -250px;
+    margin-right: 300px; 
+}
