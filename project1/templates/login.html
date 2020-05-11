@@ -6,15 +6,18 @@
 			</head>
 	</head>
 	<body>
-		<form class="loginform" action="home.html" method="post">
+		<form class="loginform" action="login" method="post">
 			<img src="../static/images/personicon.png" alt="">
 			<h1>𝙻𝚘𝚐𝚒𝚗</h1>
-			<input type="email" name="" placeholder="Email">
-			<input type="password" name="" placeholder="Password">
+			<input type="email" name="email" placeholder="Email">
+			<input type="password" name="password" placeholder="Password">
 			<input type="submit" name="" value="Login">
 		    <a id="a1" href="forget.html">Forget password?</a>
 		    <p>OR</p>
 			<a id="a2" href="Register.html">Create an account</a>
+			{% if lmsg %}
+			<h5 style="color: red;">{{lmsg}}</h5>
+			{% endif %}
 		</form>
 	</body>
 </hmtl>

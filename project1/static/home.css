@@ -1,5 +1,5 @@
 body {
-    
+    background-color: linear-gradient(to right, rgb(185, 147, 214), rgb(140, 166, 219));
 }
 .first {
     height: 100px;

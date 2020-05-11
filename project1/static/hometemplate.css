@@ -5,6 +5,12 @@ body {
 {
   background: #4d7dc6;
 }
+
+#login
+{
+  margin-left: 10px;
+  cursor: pointer;
+}
 #b1
 {
   margin-top: 5px;
