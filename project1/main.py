@@ -1,6 +1,6 @@
 from flask import Flask,render_template,request,session,redirect,url_for
 #importing  the database library
-from project1.databaselib import getdbcur
+from databaselib import getdbcur
 
 app = Flask(__name__)
 # adding session key
