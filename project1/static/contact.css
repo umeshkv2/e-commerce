@@ -1,5 +1,6 @@
 body{
-    background-color: rgb(248, 246, 248);
+    background:  linear-gradient(rgb(0, 121, 145), rgb(120, 255, 214));
+  
 }
 .con1 {
     
@@ -25,7 +26,7 @@ font-weight: bold;
 font-size:40px;
 
 
-color: #000000;
+color: black;
 
 }
 .con4 {
@@ -41,7 +42,7 @@ font-weight: normal;
 font-size: 30px;
 line-height: 24px;
 
-color: #000000;
+color: black;
 }
 .con5 {
 position: absolute;
@@ -56,7 +57,7 @@ font-weight: normal;
 font-size: 30px;
 line-height: 24px;
 
-color: #000000;
+color: black;
 }
 .con6 {
     position: absolute;
@@ -71,7 +72,7 @@ color: #000000;
     font-size: 30px;
     line-height: 24px;
     
-    color: #000000;
+    color:black;
 }
 .con7 {
     position: absolute;
@@ -86,7 +87,7 @@ color: #000000;
     font-size:40px;
     
     
-    color: #000000;
+    color: black;
     
     }
     .con8 {
@@ -102,7 +103,7 @@ color: #000000;
       font-size: 30px;
       line-height: 24px;
       
-      color: #000000;
+      color: black;
   }
 .con11 {
 position: absolute;
@@ -117,7 +118,7 @@ font-weight: bold;
 font-size: 40px;
 line-height: 40px;
 
-color: #000000;
+color: black;
 
 }
 
@@ -161,7 +162,8 @@ input[type=text], select, textarea {
     margin-top: 200px;
     font-size: 20px;
     border: 1px solid;
+    
   }   
-
+.con12
 
     
