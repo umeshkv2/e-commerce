@@ -6,15 +6,17 @@
 			</head>
 	</head>
 	<body>
-		<form class="registerform" action="verify.html" method="post">
+		<form class="registerform" action="register" method="post">
 			<h1>CREATE ACCOUNT</h1>
-      <input type="text" name="" placeholder="Name">
-			<input type="email" name="" placeholder="Email">
-			<input type="text" name="" placeholder="Mobile Number">
-      <input type="text" name="" placeholder="Address" rows="4" cols="50">
-			<input type="password" name="" placeholder="Password">
+      <input type="text" name="name" placeholder="Name">
+			<input type="email" name="email" placeholder="Email">
+			<input type="text" name="mobileno" placeholder="Mobile Number">
+			<input type="password" name="password" placeholder="Password">
 			<input type="submit" name="" value="Sign Up">
 		  <code>Already have an account? </code><a href="Login.html">Login</a>
+			{% if rmsg %}
+		   <h5 style="color:red;">{{ rmsg }}</h5>
+		     {% endif %}
 		</form>
 	</body>
 </hmtl>
