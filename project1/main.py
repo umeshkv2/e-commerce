@@ -1,7 +1,9 @@
-from flask import Flask
+from flask import Flask,render_template,redirect,url_for,request,session
+#importing  the database library
+import databaselib
 app = Flask(__name__)
 @app.route('/')
-def test():
-    return '<h1>This is test File for checking that flask run</h1>'
+def home():
+    return render_template('home.html')
 if __name__ == '__main__':
     app.run(debug = True)
