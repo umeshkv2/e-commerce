@@ -1,0 +1,23 @@
+<hmtl>
+	<head>
+			<title>Register</title>
+			<head>
+				<link rel="stylesheet" type="text/css" href="../static/register.css">
+			</head>
+	</head>
+	<body>
+		{% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+		<form class="registerform" action="{{ url_for('register') }}" method="POST">
+			<h1>CREATE ACCOUNT</h1>
+      <input type="text" name="name" placeholder="Name" required>
+			<input type="email" name="email" placeholder="Email" required>
+			<input type="text" name="number" placeholder="Mobile Number" required>
+      <input type="text" name="address" placeholder="Address" rows="4" cols="50" required>
+			<input type="password" name="password" placeholder="Password" required>
+			<input type="submit" name="signup" value="Sign Up">
+		  <code>Already have an account? </code><a href="Login.html">Login</a>
+		</form>
+	</body>
+</hmtl>
