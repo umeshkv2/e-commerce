@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request,redirect, url_for
 import pymysql
 app = Flask(__name__)
-@app.route('/',methods = ['POST', 'GET'])
+@app.route('/', methods = ['POST', 'GET'])
 def register():
 
   db = pymysql.connect("85.10.205.173","umeshkv2","umeshkv2","multikart" )
@@ -23,6 +23,15 @@ def register():
         if int(x) > 0:
             msg="The email or mobile number is already taken, please choose another"
             return render_template('register.html', msg = msg)
+        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+            msg = 'Invalid email address!'
+            return render_template('register.html', msg = msg)
+        elif not re.match(r'[A-Za-z]+', name):
+            msg = 'Name must contain only characters !'
+            return render_template('register.html', msg = msg)
+        elif not name or not email or not number or not address or not password:
+            msg = 'Please fill out the form!'
+            return render_template('register.html', msg = msg)
 
         else:
             c.execute(sql)
@@ -32,9 +41,10 @@ def register():
             db.close()
             return redirect(url_for('home'))
 
-        return render_template("register.html", msg = msg)
+
   except Exception as e:
         return(str(e))
+  return render_template("register.html", msg = msg)
 
 if __name__ == '__main__':
     app.run(debug=True)
