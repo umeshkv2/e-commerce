@@ -8,6 +8,7 @@ app.secret_key = "testing4ecommerce"
 @app.route('/')
 def home():
     return render_template('hometemplate.html')
+
 @app.route('/search',methods = ['GET','POST'])
 def search():
     if request.method == 'POST':
