@@ -9,6 +9,18 @@ app.secret_key = "testing4ecommerce"
 def home():
     return render_template('hometemplate.html')
 
+@app.route('/forget',methods = ['GET','POST'])
+def forget():
+    return render_template('forget.html')
+
+@app.route('/verify',methods = ['GET','POST'])
+def verify():
+    if request.method == 'POST':
+        #em = request.form['em']
+        #cur =getdbcur()
+        return "<h1 >curreent this functionality is not active</h1>"
+    return render_template('verify.html')
+
 @app.route('/search',methods = ['GET','POST'])
 def search():
     if request.method == 'POST':
