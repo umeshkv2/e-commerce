@@ -8,6 +8,38 @@ app.secret_key = "testing4ecommerce"
 @app.route('/')
 def home():
     return render_template('hometemplate.html')
+@app.route('/search',methods = ['GET','POST'])
+def search():
+    if request.method == 'POST':
+        items = request.form['searchbar']
+        cur = getdbcur()
+        sql = "select *  from product where product_name like %'"+items+"' OR '"+items+"'%  OR %'"+items+"'% "
+        cur.execute(sql)
+        n = cur.rowcount
+        if n >= 1:
+            data = cur.fetchall()
+            return render_template('searchitems.html', searchdata = data)
+        else :
+            return render_template('seachitems.html',searchmsg = "There is no item is available that you search,try different name.")
+    else :
+        return redirect(url_for('home'))
+
+
+@app.route('/cart',methods = ['GET', 'POST'])
+def cart():
+    if 'email' in session :
+        email = session['email']
+        sql = "select * from cart where email ='"+email+"' "
+        cur = getdbcur()
+        cur.execute(sql)
+        n = cur.rowcount()
+        if n >=1 :
+            data = cur.fetchall()
+            return render_template('cart.html',cartdata = data)
+        else:
+            return render_template('cart.html',cartemptymsg  = "Your cart is empty")
+    else :
+        return  render_template('cart.html', loginmsg = "You have to login first to view your cart.")
 
 @app.route('/contact')
 def contact():
@@ -52,7 +84,7 @@ def login():
 
 @app.route('/logout')
 def logout():
-    if 'usertype' in session:
+    if 'email' in session:
         session.pop('email',None)
         return redirect(url_for('login'))
     else:
