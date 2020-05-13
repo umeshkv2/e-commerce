@@ -157,5 +157,18 @@ def changepassword():
             return render_template('changepassword.html')
     else :
          render_template('changepassword.html',errormsg="you can't change password  ..Login first!")
+            
+@app.route('/profile')
+def profile():
+   if 'email' in session :
+       email = session['email']
+       sql = "select * from user where email ='"+email+"' "
+       cur = getdbcur()
+       cur.execute(sql)
+       data = cur.fetchall()
+       return render_template("profile.html",data=data)
+   else :
+       return  render_template('login.html', lmsg = "You have to login first to view your profile.")
+
 if __name__ == '__main__':
     app.run(debug = True)
