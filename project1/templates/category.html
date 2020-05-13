@@ -1,183 +1,27 @@
-<!DOCTYPE html>
-<html >
-  <head>
-    <link rel="stylesheet" type="text/css" href="../static/bootstrap-4.0.0-dist/css/bootstrap.min.css">
-    <script src="../static/jquery.js"></script>
-    <script src="../static/hometemplate.js"></script>
-    <link rel="stylesheet" href="../static/category.css">
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="../static/bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
-    <script>
-    $(document).ready(function(e) {
-        $("#b1").click(function(e) {
-    		$("#menu").toggle();
-        });
-    });
-    </script>
+{% extends 'hometemplate.html' %}
+{%  block h1 %}
 
-    <title></title>
-  </head>
-  <body>
-    <!-- container 1 start -->
-    <div class="header container-fluid p-0">
-    <!-- dropdown menu start -->
-    <div class="dropdown">
-    <button id="b1" ><img src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png"></button>
-    <div class="dropdown-menu" id="menu">
-    <p class="text-center"><b>Shop by category</b><p>
-    <a href="#" class="dropdown-item" >mens fashion</a>
-    <a href="#" class="dropdown-item" >womens fashion</a>
-    <a href="#" class="dropdown-item" >kids</a>
-    <a href="" class="dropdown-item" >skin care</a>
-    <a href="#" class="dropdown-item ">watches</a>
-    <a href="#" class="dropdown-item ">purses</a>
-    <a href="#" class="dropdown-item ">glasses</a>
-    <a href="#" class="dropdown-item ">bags</a>
-    <a href="#" class="dropdown-item ">beds</a>
-    <a href="#" class="dropdown-item ">tables</a>
-    <a href="#" class="dropdown-item ">door</a>
-    <a href="#" class="dropdown-item ">spices</a>
-    <a href="#" class="dropdown-item ">food and vegetables</a>
-    <hr>
-    <p class="text-center" style><b>service</b><p>
-      <a href="#" class="dropdown-item ">your account</a>
-      <a href="#" class="dropdown-item ">customer service</a>
+{% if item %}
+<div class="text-center  font-weight-bold" style="font-size:36px;color: white;"> {{item[0]}}</div>
+{% set temp = item.pop(0) %}
+{% for dict_items in item %}
+<div class="container-fluid ">
+    <div class="row" style="margin-top: 30px;">
+    <div class="col-md-4"><img class="img-fluid img-thumbnail" src="{{dict_items['src']}}">
     </div>
-    <!-- dropdown end -->
-    <form class="search" action="">
-  <input type="text" name ="" placeholder="search here" name="search">
-  <button type="submit"><i class="fa fa-search "></i></button>
-  <span id="cart"><i class='fas fa-shopping-cart' style='font-size:24px'><a href="#">cart</a></i></span>
-</form>
+    <div class="col-8">
+       <form  id="category" action="buy" method="post" action=""  >
+        <input type="text"  value="{{dict_items['name']}}" readonly style="border: none; font-size:20px; background:inherit; width:600px ; outline: none;"><br>
+        <input type="text"  value="{{dict_items['description']}}" readonly style="border: none; font-size:20px; background: inherit; width:800px;outline: none;"><br>
+        <input type="text"  value="{{dict_items['price']}}" readonly style="border: none; font-size:20px; background: inherit; width:300px;outline: none;"><br>
+        <input id="buynow" type="submit" class="btn btn-warning" style=" margin-top: 20px;" value="buy now">
+        <input id="addcart" type="submit" class="btn btn-warning" style="margin-left: 20px; margin-top: 20px; " value="add to cart">
+      </form>
     </div>
-    </div>
-<!-- header part end --> 
-<section>
-<div class="text-center"> Watches</div>
-<div class="container-fluid p-0">
-    <div class="row">
-    <div class="col-4"><img class="div-img" src="https://media.gettyimages.com/photos/closeup-of-wristwatch-on-table-picture-id1070075980?s=2048x2048"></div>
-     <div class="col-4"><p class="text">Gen 5 Carlyle Touchscreen Smartwatch with Speaker, GPS <br>₹2999.00 INR*</p>
-        <div class="button">
-        <input type="submit" value="Add to Cart">
-        </div> 
-        <br>
-        <div class="button">
-            <input type="submit" value="Buy Now">
-            </div></div>
-      </div>  
- </div>
-
- <div class="container-fluid p-0">
-    <div class="row">
-    <div class="col-4"><img class="div-img" src="https://media.gettyimages.com/photos/watch-picture-id171585392?s=2048x2048"></div>
-     <div class="col-4"><p class="text">Grant Chronograph Analog Black Dial Men's Watch - FS4832<br>₹2999.50 INR*</p>
-        <div class="button">
-        <input type="submit" value="Add to Cart">
-        </div> 
-        <br>
-        <div class="button">
-            <input type="submit" value="Buy Now">
-            </div></div>
-      </div>  
- </div>
-
- <div class="container-fluid p-0">
-    <div class="row">
-    <div class="col-4"><img class="div-img" src="https://media.gettyimages.com/photos/watch-picture-id171585391?s=2048x2048"></div>
-     <div class="col-4"><p class="text">
-      Analog Blue Dial Men's Watch - FS4835<br>₹3099.00 INR*</p>
-        <div class="button">
-        <input type="submit" value="Add to Cart">
-        </div> 
-        <br>
-        <div class="button">
-            <input type="submit" value="Buy Now">
-            </div></div>
-      </div>  
- </div>
- <div class="container-fluid p-0">
-    <div class="row">
-    <div class="col-4"><img class="div-img" src="https://media.gettyimages.com/photos/mens-stainless-steel-wristwatch-with-black-face-picture-id480226373?s=2048x2048"></div>
-     <div class="col-4"><p class="text">Fastrack Black Magic Analog Black Dial Men's Watch  <br>₹1450.99 INR*</p>
-        <div class="button">
-        <input type="submit" value="Add to Cart">
-        </div> 
-        <br>
-        <div class="button">
-            <input type="submit" value="Buy Now">
-            </div></div>
-      </div>  
- </div>
- <div class="container-fluid p-0">
-    <div class="row">
-    <div class="col-4"><img class="div-img" src="https://media.gettyimages.com/photos/watch-picture-id116471589?s=2048x2048"></div>
-     <div class="col-4"><p class="text">W Top Brand Women Bracelet Watche <br>₹2099.60 INR*</p>
-        <div class="button">
-        <input type="submit" value="Add to Cart">
-        </div> 
-        <br>
-        <div class="button">
-            <input type="submit" value="Buy Now">
-            </div></div>
-      </div>  
- </div>
-
-</section>
-
-<!-- starting of footer -->
-<div class="container-fluid p-0  ">
-
-    <footer class="footer-distributed">
-    <div class="footer-left">
-      
-    <h3>About<span>Service</span></h3>
-    
-    <p class="footer-links">
-      <a href="#">Home</a>
-      |
-      <a href="#">Blog</a>
-      |
-      <a href="#">About</a>
-      |
-      <a href="#">Contact</a>
-    </p>
-    
-    <p class="footer-company-name">© 2020 Service Pvt. Ltd.</p>
-    </div>
-    
-    <div class="footer-center">
-    <div>
-      <i class="fa fa-map-marker"></i>
-        <p><span>00 - Jaipur,
-         Mansarover, Jaipur</span>
-        Rajasthan, India - 302020</p>
-    </div>
-    
-    <div>
-      <i class="fa fa-phone"></i>
-      <p>+91 0000000000</p>
-    </div>
-    <div>
-      <i class="fa fa-envelope"></i>
-      <p><a href="abcdefghi@gmail.com">abcdefghi@gmail.com</a></p>
-    </div>
-    </div>
-    <div class="footer-right">
-    <p class="footer-company-about">
-      <span>About the company</span>
-      We strive to have a positive impact on customers, employees, small businesses, the economy, and communities.</p>
-    <div class="footer-icons">
-      <a href="#"><i class='fab fa-facebook-f'></i></a>
-      <a href="#"><i class='fab fa-instagram'></i></a>
-      <a href="#"><i class='fab fa-linkedin'></i></a>
-      <a href="#"><i class='fab fa-whatsapp'></i></a>
-      <a href="#"><i class='fab fa-twitter'></i></a>
       </div>
-    </div>
-    </footer>
-    </div>
-      </body>
-    </html>
-    
+ </div>
+
+ {% endfor %}
+ {% endif %}
+ <p style="margin: 20px;"></p>
+ {%  endblock %}

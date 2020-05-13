@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html >
   <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../static/bootstrap-4.0.0-dist/css/bootstrap.min.css">
     <script src="../static/jquery.js"></script>
     <script src="../static/hometemplate.js"></script>
@@ -8,12 +9,23 @@
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="../static/bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+    <!-- other pages static files-->
     <script>
     $(document).ready(function(e) {
         $("#b1").click(function(e) {
     		$("#menu").toggle();
         });
     });
+    $(document).ready(function(e) {
+        $('#buynow').click(function(){
+        $('#category').attr('action', 'buy');
+        });
+
+        $('#addcart').click(function(){
+        $('#category').attr('action', 'cart');
+        });
+  });
+
     </script>
 
     <title></title>
@@ -30,7 +42,7 @@
     <a href="#" class="dropdown-item" >womens fashion</a>
     <a href="#" class="dropdown-item" >kids</a>
     <a href="" class="dropdown-item" >skin care</a>
-    <a href="#" class="dropdown-item ">watches</a>
+    <a href="watches" class="dropdown-item ">watches</a>
     <a href="#" class="dropdown-item ">purses</a>
     <a href="#" class="dropdown-item ">glasses</a>
     <a href="#" class="dropdown-item ">bags</a>
@@ -59,6 +71,10 @@
     </div>
     </div>
 <!-- header part end -->
+
+{% block h1 %}
+
+
 <!--carousel start -->
 <div id="caro" class="carousel slide" data-ride="carousel">
 
@@ -129,7 +145,7 @@
 </div>
 
 
-
+{% endblock %}
 
 <!-- starting of footer -->
 <div class="container-fluid p-0  ">

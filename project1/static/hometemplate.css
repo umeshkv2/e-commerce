@@ -276,3 +276,22 @@ footer{
 		margin-left: 0;
   }
 }
+
+.dropdown-menu
+{
+	background-color: cornflowerblue;
+}
+.dropdown-menu a
+{
+
+	border:1px solid grey;
+	border-radius: 4px;
+}
+.dropdown-menu p
+{
+	font-weight: 500;
+}
+.dropdown-menu a:hover
+{
+	background-color: yellow;
+}

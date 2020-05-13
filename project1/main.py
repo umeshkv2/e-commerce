@@ -123,5 +123,20 @@ def changepassword():
             return render_template('changepassword.html')
     else :
          render_template('changepassword.html',errormsg="you can't change password  ..Login first!")
+
+# Category items section
+@app.route('/watches')
+def watches():
+
+    item =['watches',{ 'src' : 'https://media.gettyimages.com/photos/closeup-of-wristwatch-on-table-picture-id1070075980?s=2048x2048', 'name' :  'Gen 5 Carlyle' , 'description' : '(Touchscreen Smartwatch with Speaker, GPS)', 'price' : '2999'},
+    { 'src' : 'https://media.gettyimages.com/photos/watch-picture-id171585392?s=2048x2048', 'name' :  'Grant Chronograph' , 'description' : '(Analog Black Dial Mens Watch - FS4832)', 'price' : '2999'},
+    { 'src' : 'https://media.gettyimages.com/photos/watch-picture-id171585391?s=2048x2048', 'name' :  'Analog Blue' , 'description' : '(Dial Mens Watch - FS4835)', 'price' : '2999'},
+    { 'src' : 'https://media.gettyimages.com/photos/mens-stainless-steel-wristwatch-with-black-face-picture-id480226373?s=2048x2048', 'name' :  'Fastrack Black Magic' , 'description' : '(Analog Black Dial Mens Watch)', 'price' : '2999'},
+    { 'src' : 'https://media.gettyimages.com/photos/watch-picture-id116471589?s=2048x2048', 'name' :  'Wizzy' , 'description' : '(Top brand women watch)', 'price' : '2999'}
+    ]
+
+
+    return render_template('category.html',item = item)
+
 if __name__ == '__main__':
     app.run(debug = True)
