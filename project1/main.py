@@ -11,7 +11,41 @@ def home():
 
 @app.route('/forget',methods = ['GET','POST'])
 def forget():
-    return render_template('forget.html')
+    if request.method == 'POST':
+        em = request.form['email']
+        cur = getdbcur()
+        sql = "select * from user where email = '"+em+"' "
+        cur.execute(sql)
+        n = cur.rowcount
+        if n == 1 :
+            session['email'] = em
+            return render_template('confirmpassword.html')
+        else :
+            return render_template('forget.html',lmsg = "Incorrect Email")
+    else :
+        return render_template('forget.html')
+
+
+@app.route('/confirmpassword',methods = ['GET','POST'])
+def confirmpassword():
+
+    email = session['email']
+    if request.method == 'POST':
+        newpass = request.form['newpass']
+        cpass=request.form['cpass']
+        if newpass==cpass:
+           sql="update user set password='"+newpass+"' where email='"+email+"' "
+           cur=getdbcur()
+           cur.execute(sql)
+           n = cur.rowcount
+           return render_template('login.html')
+        else:
+           return render_template('changepassword.html',cmsg="Password donot mathch")
+    else:
+        render_template('changepassword.html',errormsg="You can't change password!")
+
+
+
 
 @app.route('/verify',methods = ['GET','POST'])
 def verify():
