@@ -6,10 +6,13 @@
 			</head>
 	</head>
 	<body>
-		<form class="loginform" action="verify" method="post">
+		<form class="loginform" action="forget" method="post">
 			<h2>Forget Password</h2>
-			<input type="email" name="em" placeholder="Email">
+			<input type="email" name="email" placeholder="Email">
 			<input type="submit" name="" value="Continue">
+			{% if lmsg %}
+			<h5 style="color: red;">{{lmsg}}</h5>
+			{% endif %}
 		</form>
 	</body>
 </hmtl>
