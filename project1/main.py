@@ -135,9 +135,9 @@ def login():
 def logout():
     if 'email' in session:
         session.pop('email',None)
-        return redirect(url_for('login'))
+        return redirect(url_for('home'))
     else:
-        return redirect(url_for('login'))
+        return redirect(url_for('home'))
 
 @app.route('/changepassword',methods = ['GET','POST'])
 def changepassword():
