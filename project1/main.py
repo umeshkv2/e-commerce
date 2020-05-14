@@ -150,13 +150,13 @@ def changepassword():
             n = cur.rowcount
             if n==1:
                 session.pop('email', None)
-                return render_template('changepassword.html',cmsg="Password changed Successfully")
+                return redirect(url_for('profile'))
             else:
                     return render_template('changepassword.html',cmsg="Incorrect old password!")
         else:
             return render_template('changepassword.html')
     else :
-         render_template('changepassword.html',errormsg="you can't change password  ..Login first!")
+         render_template('changepassword.html',errormsg="You can't change password  ..Login first!")
 
 # Category items section
 @app.route('/watches')
@@ -173,7 +173,7 @@ def watches():
     return render_template('category.html',item = item)
 
   #category section end
-            
+
 @app.route('/profile')
 def profile():
    if 'email' in session :
@@ -185,6 +185,25 @@ def profile():
        return render_template("profile.html",data=data)
    else :
        return  render_template('login.html', lmsg = "You have to login first to view your profile.")
+
+
+@app.route('/editprofile',methods=['GET','POST'])
+def editprofile():
+    if 'email' in session :
+        email = session['email']
+        if request.method == 'POST':
+            nm = request.form['name']
+            ph = request.form['number']
+            sql="update user set name='"+nm+"' , number= '"+ph+"' where email='"+email+"'"
+            cur=getdbcur()
+            cur.execute(sql)
+            return redirect(url_for('profile'))
+
+        else:
+            return render_template('editprofile.html')
+    else :
+         render_template('editprofile.html',errormsg="You can't change password  ..Login first!")
+
 
 
 if __name__ == '__main__':
