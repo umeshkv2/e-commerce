@@ -5,45 +5,45 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-   
+
     <link rel="stylesheet" type="text/css" href="../static/bootstrap-4.0.0-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../static/editprofile.css">
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="../static/bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
-   
-   
+
+
 </head>
 <body>
 
     <div class="container">
         <div class="row">
-             <form class="form-horizontal">
+             <form class="form-horizontal"   action="editprofile" method="post">
                 <fieldset>
                     <!-- Address form -->
-             
+
                     <h2>Edit Profile</h2>
-             
+
                     <!-- first-name input-->
                     <div class="control-group">
-                        <label class="control-label">First Name</label>
+                        <label class="control-label">Name</label>
                         <div class="controls">
-                            <input id="first-name" name="first-name" type="text" placeholder="first name"
+                            <input id="first-name" name="name" type="text" placeholder="name"
                             class="input-xlarge">
                             <p class="help-block"></p>
                         </div>
                     </div>
-                    
+
                     <!-- last-name input-->
-                    <div class="control-group">
+                    <!--<div class="control-group">
                         <label class="control-label">Last Name</label>
                         <div class="controls">
-                            <input id="last-name" name="last-name" type="text" placeholder="last name"
+                            <input id="last-name" name="lname" type="text" placeholder="last name"
                             class="input-xlarge">
                             <p class="help-block"></p>
                         </div>
-                    </div>
-                    
+                    </div>-->
+
                     <!-- Select Basic -->
     <!--<div class="control-group">
       <label class="control-label" for="selectbasic">Gender</label>
@@ -56,15 +56,15 @@
         </select>
       </div>
     </div>-->
-    <div class="control-group">
+    <!--<div class="control-group">
         <label class="control-label">Email</label>
         <div class="controls">
-            <input id="mobile" name="mobile" type="text" placeholder="email" class="input-xlarge">
+            <input id="mobile" name="email" type="text" placeholder="email" class="input-xlarge">
             <p class="help-block"></p>
         </div>
-    </div>
-    
-    
+    </div>-->
+
+
                     <!--<div class="control-group">
                                         <label class="control-label">Date of Birth</label>
                         <div class="controls">
@@ -74,16 +74,16 @@
                     </div>
                   </div>
                     </div>-->
-                    
+
                     <!-- city input-->
                     <div class="control-group">
                         <label class="control-label">Mobile No.</label>
                         <div class="controls">
-                            <input id="mobile" name="mobile" type="text" placeholder="mobile no." class="input-xlarge">
+                            <input id="mobile" name="number" type="text" placeholder="mobile no." class="input-xlarge">
                             <p class="help-block"></p>
                         </div>
                     </div>
-                    
+
                     <!-- city input-->
                     <div class="control-group">
                         <label class="control-label">City / Town</label>
@@ -109,14 +109,20 @@
                                 <option value="ZW">Zimbabwe</option>
                             </select>
                         </div>
+
                     </div>
-                </fieldset>
-            </form>
+                    <div class="button2">
+                    <input type="submit" value="Save Changes">
+                  </div>
+
+                    </fieldset>
+                  </form>
         </div>
+        {% if errormsg %}
+        <h5 style="color:red">{{ errormsg }}</h5>
+        {%  endif %}
     </div>
-    <div class="button2">
-        <input type="submit" value="Save Changes">
-        </div>
-    
+
+
 </body>
-</html> 
+</html>
