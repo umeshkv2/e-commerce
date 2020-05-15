@@ -9,12 +9,15 @@
 	<body>
 		<form class="loginform" action="verify" method="post">
 			<h1 style="font-size:24px;">Verify Account</h1>
-			<input type="text" name="" placeholder="Enter Verification Code" required>
-			<input type="submit" name="" value="Continue">
-			{% if vmsg  %}
-			<h5 style="color: red;">{{vmsg}}</h5>
+			<input type="text" name="email" placeholder="Enter your email" required>
+			<input type="text" name="code" placeholder="Enter Verification Code" required>
+			<input type="submit" name="" value="verify">
+			{% if successmsg  %}
+			<h5 style="color: red;">{{successmsg}}</h5>
 			<a id="a2"  href="login"> Login</a>
 			{% endif %}
-		</form>
+			{% if errormsg  %}
+			<h5 style="color: red;">{{errormsg}}</h5>
+			{% endif %}
 	</body>
 </hmtl>

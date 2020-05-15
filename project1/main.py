@@ -1,11 +1,22 @@
+import uuid
 from flask import Flask,render_template,request,session,redirect,url_for,flash
 #importing  the database library
 from databaselib import getdbcur
+from flask_mail import Mail, Message
+from itsdangerous import URLSafeTimedSerializer,SignatureExpired
 
 app = Flask(__name__)
 # adding session key
 app.secret_key = "testing4ecommerce"
-
+#adding config for mail
+secret_url = URLSafeTimedSerializer(app.secret_key)
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'umesh.us.suman@gmail.com'
+# app.config['MAIL_PASSWORD'] = 'Enter ur pass here'   
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+mail = Mail(app)
 
 @app.route('/')
 def home():
@@ -18,7 +29,7 @@ def changepassword():
             email = session['email']
             oldpass  =  request.form['oldpass']
             newpass = request.form['newpass']
-            sql="update user set password='"+newpass+"' where email='"+email+"' AND password='"+oldpass+"' "
+            sql="update users set password='"+newpass+"' where email='"+email+"' AND password='"+oldpass+"' "
             cur=getdbcur()
             cur.execute(sql)
             n = cur.rowcount
@@ -38,7 +49,7 @@ def forget():
     if request.method == 'POST':
         em = request.form['email']
         cur = getdbcur()
-        sql = "select * from user where email = '"+em+"' "
+        sql = "select * from users where email = '"+em+"' "
         cur.execute(sql)
         n = cur.rowcount
         if n == 1 :
@@ -49,35 +60,20 @@ def forget():
     else :
         return render_template('forget.html')
 
-
-@app.route('/confirmpassword',methods = ['GET','POST'])
-def confirmpassword():
-
-    email = session['email']
-    if request.method == 'POST':
-        newpass = request.form['newpass']
-        cpass=request.form['cpass']
-        if newpass==cpass:
-           sql="update user set password='"+newpass+"' where email='"+email+"' "
-           cur=getdbcur()
-           cur.execute(sql)
-           n = cur.rowcount
-           return render_template('login.html')
-        else:
-           return render_template('changepassword.html',cmsg="Password donot mathch")
-    else:
-        render_template('changepassword.html',errormsg="You can't change password!")
-
-
-
-
 @app.route('/verify',methods = ['GET','POST'])
 def verify():
     if request.method == 'POST':
-        #em = request.form['em']
-        #cur =getdbcur()
-        return "<h1 >curreent this functionality is not active</h1>"
-    return render_template('verify.html')
+        try:
+            em = request.form['email']
+            cd = request.form['code']
+            sql = "update users set email_confirm=1 where email = '"+em+"' AND verifcode = '"+cd+"'  "
+            cur = getdbcur()
+            cur.execute(sql)
+            return render_template('verify.html',successmsg = "email confirmation successful")
+        except:
+            return render_template('verify.html',errormsg = "Email or code is incorrect")
+    else:
+        return render_template('verify.html')
 
 @app.route('/search',methods = ['GET','POST'])
 def search():
@@ -119,18 +115,23 @@ def contact():
 @app.route('/register',methods=['GET','POST'])
 def register():
     if request.method == 'POST':
-        nm = request.form['name']
-        em = request.form['email']
-        ph = request.form['mobileno']
-        ps = request.form['password']
-        cur = getdbcur()
-        sql = "insert into user values('"+nm+"','"+em+"','"+ph+"','"+ps+"')"
-        cur.execute(sql)
-        n = cur.rowcount
-        if n == 1 :
-            msg = "Registration Successful!"
-            return render_template('register.html',rmsg = msg)
-        else :
+       
+        try:
+            nm = request.form['name']
+            em = request.form['email']
+            ph = request.form['mobileno']
+            ps = request.form['password']
+            code = uuid.uuid1()
+            uc = code.node
+            cmsg = Message('verification code', sender = 'umesh.us.suman@gmail.com', recipients = ['{}'.format(em)])
+            cmsg.body = "Your verification code is: {}".format(uc)
+            mail.send(cmsg)
+            cur = getdbcur()
+            sql = "insert into users(email,name,mobileno,password,verifcode) values(%s,%s,%s,%s,%s)"
+            cur.execute(sql,(em,nm,ph,ps,uc))
+            rsmsg = "Registration Successful please confirm your email!"
+            return render_template('register.html',rsmsg = rsmsg)
+        except:
             msg = "Registration Failed!"
             return render_template('register.html',rmsg = msg)
     else :
@@ -142,7 +143,7 @@ def login():
         em = request.form['email']
         ps = request.form['password']
         cur = getdbcur()
-        sql = "select * from user where email = '"+em+"' and password = '"+ps+"' "
+        sql = "select * from users where email = '"+em+"' and password = '"+ps+"' "
         cur.execute(sql)
         n = cur.rowcount
         if n == 1 :
@@ -309,7 +310,7 @@ def table_chair():
 def profile():
    if 'email' in session :
        email = session['email']
-       sql = "select * from user where email ='"+email+"' "
+       sql = "select * from users where email ='"+email+"' "
        cur = getdbcur()
        cur.execute(sql)
        data = cur.fetchall()
@@ -326,7 +327,7 @@ def editprofile():
         if request.method == 'POST':
             nm = request.form['name']
             ph = request.form['number']
-            sql="update user set name='"+nm+"' , number= '"+ph+"' where email='"+email+"'"
+            sql="update users set name='"+nm+"' , mobileno= '"+ph+"' where email='"+email+"'"
             cur=getdbcur()
             cur.execute(sql)
             return redirect(url_for('profile'))
