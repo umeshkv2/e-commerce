@@ -135,9 +135,9 @@ def login():
 def logout():
     if 'email' in session:
         session.pop('email',None)
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
     else:
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
 
 @app.route('/changepassword',methods = ['GET','POST'])
 def changepassword():
@@ -250,7 +250,7 @@ def beauty():
     { 'src' : 'https://cdn.pixabay.com/photo/2015/03/20/22/08/eyeshadow-682998__340.jpg', 'name' :  'facial makeup kit' , 'description' : '(facial kit) ', 'price' : '1400'},
     { 'src' : 'https://cdn.pixabay.com/photo/2017/09/06/20/16/eyeliner-2722845__340.jpg', 'name' :  'eye liner' , 'description' : '(vatious color eyeliner )', 'price' : '100'},
     { 'src' : 'https://cdn.pixabay.com/photo/2017/03/14/11/39/perfume-2142817__340.jpg', 'name' :  'perfume' , 'description' : '(fragrance smell )', 'price' : '500'},
-    
+
     ]
 
     return render_template('category.html',item = item)
@@ -264,9 +264,9 @@ def bags():
     { 'src' : 'https://images.unsplash.com/photo-1472717400230-1c592a3179d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 'name' : 'school bag' , 'description' : '(beautiful and tough bag)', 'price' : '1000'},
     { 'src' : 'https://cdn.pixabay.com/photo/2015/12/08/00/36/luggage-1081872__340.jpg', 'name' :  'lugage bags' , 'description' : '(lugage bags with high toughness and capacity)', 'price' : '3500'},
     { 'src' : 'https://cdn.pixabay.com/photo/2017/06/19/17/36/luggage-2420316_960_720.jpg', 'name' :  'suit case' , 'description' : '(suit case that you can take anywhere in hand)', 'price' : '2500'},
-    
+
     ]
-    
+
     return render_template('category.html',item = item)
 
 @app.route('/beds')
@@ -277,9 +277,9 @@ def beds():
     { 'src' : 'https://images.unsplash.com/photo-1530334580314-1e7a340426a0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 'name' :  'steel and iron bed' , 'description' : '(low cost high strength)', 'price' : '6000'},
     { 'src' : 'https://cdn.pixabay.com/photo/2017/07/10/10/06/mattress-2489615__340.jpg', 'name' :  'matress' , 'description' : '(matress for instant sleep and comfort)', 'price' : '3000'},
     { 'src' : 'https://cdn.pixabay.com/photo/2015/11/07/11/22/pillows-1031079__340.jpg', 'name' :  'pillow' , 'description' : '(pillow for comfort your head)', 'price' : '500'},
-    
+
     ]
-    
+
     return render_template('category.html',item = item)
 
 @app.route('/sofa')
@@ -288,8 +288,8 @@ def sofa():
     item =['sofa',{ 'src' : 'https://cdn.pixabay.com/photo/2017/08/02/01/01/living-room-2569325__340.jpg', 'name' :  'simple sofa' , 'description' : '(simple sofa for hall and living room)', 'price' : '7000'},
     { 'src' : 'https://cdn.pixabay.com/photo/2014/09/15/21/46/couch-447484__340.jpg', 'name' :  'fancy sofa' , 'description' : '(couch) ', 'price' : '7000'},
     { 'src' : 'https://cdn.pixabay.com/photo/2013/09/26/11/59/leather-sofa-186636__340.jpg', 'name' :  'leather sofa' , 'description' : '(leather sofa or extrem comfort and look)', 'price' : '15000'},
- 
-    ]    
+
+    ]
     return render_template('category.html',item = item)
 @app.route('/table_chair')
 def table_chair():
@@ -331,6 +331,35 @@ def editprofile():
             return render_template('editprofile.html')
     else :
          render_template('editprofile.html',errormsg="You can't change password  ..Login first!")
+
+def convertToBinaryData(filename):
+    # Convert digital data to binary format
+    with open(filename, 'rb') as file:
+        binaryData = file.read()
+    return binaryData
+
+@app.route('/upload',methods=['GET','POST'])
+def upload():
+    if request.method == 'POST':
+        nm = request.form['name']
+        ca = request.form['category']
+        pr = request.form['price']
+        ds = request.form['description']
+        im =  request.files['file']
+        bd=convertToBinaryData(im.filename)
+        cur = getdbcur()
+        sql = "insert into product(name,category,price,description,image) values(%s,%s,%s,%s,%s)"
+        cur.execute(sql,(nm,ca,pr,ds,bd))
+        n = cur.rowcount
+        if n == 1 :
+            msg = "Uploaded Successful!"
+            return render_template('upload.html',msg = msg)
+        else :
+            msg = "Upload Failed!"
+            return render_template('upload.html',msg = msg)
+
+    else :
+        return render_template('upload.html')
 
 
 
