@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request,session,redirect,url_for
+from flask import Flask,render_template,request,session,redirect,url_for,flash
 #importing  the database library
 from databaselib import getdbcur
 
@@ -10,6 +10,28 @@ app.secret_key = "testing4ecommerce"
 @app.route('/')
 def home():
     return render_template('hometemplate.html')
+
+@app.route('/changepassword',methods = ['GET','POST'])
+def changepassword():
+    if request.method == 'POST':
+        if 'email' in session :
+            email = session['email']
+            oldpass  =  request.form['oldpass']
+            newpass = request.form['newpass']
+            sql="update user set password='"+newpass+"' where email='"+email+"' AND password='"+oldpass+"' "
+            cur=getdbcur()
+            cur.execute(sql)
+            n = cur.rowcount
+            if n==1:
+                session.pop('email', None)
+                return render_template('changepassword.html',cmsg="password changed successfully!")
+            else:
+                    return render_template('changepassword.html',incorroldpassmsg="Incorrect old password!")
+        else:
+            return render_template('changepassword.html',errormsg="You can not change password  ..Login first!")
+    else :
+        return render_template('changepassword.html')
+         
 
 @app.route('/forget',methods = ['GET','POST'])
 def forget():
@@ -125,7 +147,7 @@ def login():
         n = cur.rowcount
         if n == 1 :
             session['email'] = em
-            return redirect(url_for('home'))
+            return redirect(url_for('profile'))
         else :
             return render_template('login.html',lmsg = "Incorrect Email or password!")
     else :
@@ -139,26 +161,7 @@ def logout():
     else:
         return redirect(url_for('home'))
 
-@app.route('/changepassword',methods = ['GET','POST'])
-def changepassword():
-    if 'email' in session :
-        email = session['email']
-        if request.method == 'POST':
-            oldpass  =  request.form['oldpass']
-            newpass = request.form['newpass']
-            sql="update user set password='"+newpass+"' where email='"+email+"' AND password='"+oldpass+"' "
-            cur=getdbcur()
-            cur.execute(sql)
-            n = cur.rowcount
-            if n==1:
-                session.pop('email', None)
-                return redirect(url_for('profile'))
-            else:
-                    return render_template('changepassword.html',cmsg="Incorrect old password!")
-        else:
-            return render_template('changepassword.html')
-    else :
-         render_template('changepassword.html',errormsg="You can't change password  ..Login first!")
+
 
 # Category items section
 @app.route('/womens_fashion')
@@ -312,7 +315,8 @@ def profile():
        data = cur.fetchall()
        return render_template("profile.html",data=data)
    else :
-       return  render_template('login.html', lmsg = "You have to login first to view your profile.")
+       flash("you must login first to view your profile")
+       return  redirect(url_for('login'))
 
 
 @app.route('/editprofile',methods=['GET','POST'])
@@ -333,6 +337,5 @@ def editprofile():
          render_template('editprofile.html',errormsg="You can't change password  ..Login first!")
 
 
-
-if __name__ == '__main__':
+if  __name__ == '__main__':
     app.run(debug = True)

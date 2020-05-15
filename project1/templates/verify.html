@@ -9,7 +9,7 @@
 	<body>
 		<form class="loginform" action="verify" method="post">
 			<h1 style="font-size:24px;">Verify Account</h1>
-			<input type="text" name="" placeholder="Enter Verification Code">
+			<input type="text" name="" placeholder="Enter Verification Code" required>
 			<input type="submit" name="" value="Continue">
 			{% if vmsg  %}
 			<h5 style="color: red;">{{vmsg}}</h5>
