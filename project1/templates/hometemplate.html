@@ -22,7 +22,15 @@
         });
 
         $('#addcart').click(function(){
-        $('#category').attr('action', 'cart');
+        $('#category').attr('action', 'addtocart');
+        });
+
+        $('#buynow').click(function(){
+        $('#cartform').attr('action', 'buy');
+        });
+        
+        $('#removecart').click(function(){
+        $('#cartform').attr('action', 'removeitem');
         });
   });
 

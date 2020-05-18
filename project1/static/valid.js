@@ -15,16 +15,16 @@ function A(f)
 		f.mobileno.focus();
 		return false;
 	}
-	else if(check_pass(f.password,"password must be atleast of length 8 character ")==false)
+	else if(check_pass(f.pass,"password must be atleast of length 8 character ")==false)
 	{
-		f.password.focus();
+		f.pass.focus();
 		return false;
 	}
-	else if(match_pass(f.password,f.cpassword,"Password Doesn't Match")==false)
+	else if(match_pass(f.pass,f.cpass,"Password Doesn't Match")==false)
 	{
-		f.password.focus();
-		f.password.value="";
-		f.cpassword.value="";
+		f.pass.focus();
+		f.pass.value="";
+		f.cpass.value="";
 		return false;
 	}
 	
@@ -33,12 +33,17 @@ function A(f)
 
 function B(f)
 { 
-	if(check_pass(f.oldpass,"password must be atleast of length 8 character ")==false)
+	if(check_pass(f.oldpass,"old password must be atleast of length 8 character ")==false)
 	{
 		f.oldpass.focus();
 		return false;
 	}
-	else if(match_pass(f.newpass,f.cpass,"New Password and Confirm password Doesn't Match")==false)
+	if(check_pass(f.newpass,"new password must be atleast of length 8 character ")==false)
+	{
+		f.newpass.focus();
+		return false;
+	}
+	else if(match_pass(f.newpass,f.cpass,"Password Doesn't Match")==false)
 	{
 		f.oldpass.focus();
 		f.oldpass.value="";
@@ -93,8 +98,8 @@ function mobile_range(e,m)
 }
 
 function check_pass(e,m)
-{
-	if ( e.value.match(/^[a-zA-Z_0-9@\!#\$\^%&*()+=\-[]\\\';,\.\/\{\}\|\":<>\? ]{8,}+$/)) 
+{	
+	if ( e.value.length >= 8) 
 		{
 			return true;
 		}
@@ -115,5 +120,6 @@ function match_pass(e1,e2,m)
 	else
 	{
 		return true;
-	}	
+	}
+	
 }

@@ -92,22 +92,6 @@ def search():
         return redirect(url_for('home'))
 
 
-@app.route('/cart',methods = ['GET', 'POST'])
-def cart():
-    if 'email' in session :
-        email = session['email']
-        sql = "select * from cart where email ='"+email+"' "
-        cur = getdbcur()
-        cur.execute(sql)
-        n = cur.rowcount()
-        if n >=1 :
-            data = cur.fetchall()
-            return render_template('cart.html',cartdata = data)
-        else:
-            return render_template('cart.html',cartemptymsg  = "Your cart is empty")
-    else :
-        return  render_template('cart.html', loginmsg = "You have to login first to view your cart.")
-
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
@@ -365,6 +349,67 @@ def upload():
 
     else :
         return render_template('upload.html')
+
+#cart functionality
+@app.route('/addtocart',methods = ['GET','POST'])
+def addtocart():
+    if 'email' in session:
+        email = session['email']
+        pname = request.form['pname']
+        pdescription = request.form['pdescription']
+        pprice = request.form['pprice']
+        pimg = request.form['pimg']
+        cur = getdbcur()
+        try:
+            sql = "insert into cart values( '"+email+"','"+pname+"','"+pdescription+"','"+pprice+"','"+pimg+"' )"
+            cur.execute(sql)
+            return redirect(url_for('cart'))
+        except:
+            return render_template('category.html',addtocartmsg = "item is not added to cart")
+    else:
+        flash('Login first to add an item in your cart')
+        return redirect(url_for('login'))
+
+@app.route('/removeitem',methods =['GET','POST'])
+
+def removeitem():
+    if 'email' in session:
+        if request.method == 'POST':
+            cur = getdbcur()
+            email = session['email']
+            pname =request.form['pname']
+            try:
+                sql = "delete from cart where email ='"+email+"' AND productName = '"+pname+"'  "
+                cur.execute(sql)
+                flash('item is removed from cart')
+                return redirect(url_for('cart'))
+            except:
+                flash('There is some error while removing')
+                return redirect(url_for('cart'))
+        else:
+            flash('Direct access to this page is not allowed.')
+            return redirect(url_for('cart'))
+    else:
+        flash('Login first')
+        return redirect(url_for('login'))
+
+
+@app.route('/cart',methods = ['GET', 'POST'])
+def cart():
+    if 'email' in session :
+        email = session['email']
+        sql = "select * from cart where email ='"+email+"' "
+        cur = getdbcur()
+        cur.execute(sql)
+        n = cur.rowcount
+        if n >=1 :
+            data = cur.fetchall()
+            return render_template('cart.html',cartdata = data)
+        else:
+            return render_template('cart.html',cartemptymsg  = "Looks like you have no items in your shopping cart.")
+    else :
+        flash('login first to view cart')
+        return  redirect(url_for('login'))
 
 
 if  __name__ == '__main__':

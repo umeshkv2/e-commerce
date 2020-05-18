@@ -1,0 +1,34 @@
+{% extends 'hometemplate.html' %}
+{% block h1 %}
+<div class="text-center  font-weight-bold" style="font-size:36px;color: white;"> cart</div>
+{% with cartmsg = get_flashed_messages() %}
+{% if cartmsg %}
+<h5 style="color: red; text-align: center;">{{cartmsg[0]}}</h5>
+{% endif %}
+{% endwith %}
+{% if cartdata %}
+{% for data in cartdata %}
+<div class="container-fluid ">
+    <div class="row" style="margin-top: 30px;">
+    <div class="col-md-4"><img class="img-fluid img-thumbnail" src="{{data[4]}}">
+    </div>
+    <div class="col-4 text-dark">
+        <form  id="cartform"  method="post" action="" style="margin-top:70px;" >
+        <input type="text" name="pname"  value="{{data[1]}}" readonly style="border: none; font-size:20px; background:inherit; width:600px ; outline: none;"><br>
+        <input type="text"  name="pdescription" value="{{data[2]}}" readonly style="border: none; font-size:20px; background: inherit; width:800px;outline: none;"><br>
+      <span style="font-size: 20px;">&#x20b9</span> <input type="text" name="pprice"  value="{{data[3]}}" readonly style="border: none; font-size:20px; background: inherit; width:300px;outline: none;"><br>
+          <input type="hidden" name="pimg" value="{{data[4]}}" readonly >
+        <input id="buynow" type="submit" class="btn btn-warning" style=" margin-top: 20px; margin-right: 20px;" value="buy now">
+        <input id="removecart" type="submit" class="btn btn-warning" style=" margin-top: 20px; " value="remove from cart">
+      </form>
+    </div>
+      </div>
+ </div>
+{%  endfor%}
+{% endif %}
+{% if cartemptymsg %}
+<div class="img-fluid img-thumbnail col-sm-4 offset-4"><img src="https://image.flaticon.com/icons/svg/412/412986.svg"></div>
+<div class="text-center  font-weight-bold" style="font-size:20px;color:red;"> {{cartemptymsg}}</div>
+<div class="text-center  font-weight-bold" style="font-size:30px;color:blue;"> <a href="/">click here to shop</a></div>
+{% endif %}
+{% endblock %}
