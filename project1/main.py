@@ -369,7 +369,7 @@ def upload():
 
 
     else :
-             render_template('upload.html',msg="You can't upload products  ..Login first!")
+             return render_template('upload.html',msg="You can't upload products  ..Login first!")
 
 
 if  __name__ == '__main__':
