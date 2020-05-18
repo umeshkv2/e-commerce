@@ -345,26 +345,31 @@ def convertToBinaryData(filename):
 
 @app.route('/upload',methods=['GET','POST'])
 def upload():
-    if request.method == 'POST':
-        nm = request.form['name']
-        ca = request.form['category']
-        pr = request.form['price']
-        ds = request.form['description']
-        im =  request.files['file']
-        bd=convertToBinaryData(im.filename)
-        cur = getdbcur()
-        sql = "insert into product(name,category,price,description,image) values(%s,%s,%s,%s,%s)"
-        cur.execute(sql,(nm,ca,pr,ds,bd))
-        n = cur.rowcount
-        if n == 1 :
-            msg = "Uploaded Successful!"
-            return render_template('upload.html',msg = msg)
+    if 'email' in session :
+        email = session['email']
+        if request.method == 'POST':
+              nm = request.form['name']
+              ca = request.form['category']
+              pr = request.form['price']
+              ds = request.form['description']
+              im =  request.files['file']
+              bd=convertToBinaryData(im.filename)
+              cur = getdbcur()
+              sql = "insert into product(name,category,price,description,image,email) values(%s,%s,%s,%s,%s,%s)"
+              cur.execute(sql,(nm,ca,pr,ds,bd,email))
+              n = cur.rowcount
+              if n == 1 :
+                  msg = "Uploaded Successful!"
+                  return render_template('upload.html',msg = msg)
+              else :
+                  msg = "Upload Failed!"
+                  return render_template('upload.html',msg = msg)
         else :
-            msg = "Upload Failed!"
-            return render_template('upload.html',msg = msg)
+            return render_template('upload.html')
+
 
     else :
-        return render_template('upload.html')
+             render_template('upload.html',msg="You can't upload products  ..Login first!")
 
 
 if  __name__ == '__main__':
