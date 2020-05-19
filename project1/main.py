@@ -359,18 +359,21 @@ def upload():
 @app.route('/addtocart',methods = ['GET','POST'])
 def addtocart():
     if 'email' in session:
-        email = session['email']
-        pname = request.form['pname']
-        pdescription = request.form['pdescription']
-        pprice = request.form['pprice']
-        pimg = request.form['pimg']
-        cur = getdbcur()
-        try:
-            sql = "insert into cart values( '"+email+"','"+pname+"','"+pdescription+"','"+pprice+"','"+pimg+"' )"
-            cur.execute(sql)
+        if request.method == 'POST':
+            email = session['email']
+            pname = request.form['pname']
+            pdescription = request.form['pdescription']
+            pprice = request.form['pprice']
+            pimg = request.form['pimg']
+            cur = getdbcur()
+            try:
+                sql = "insert into cart values( '"+email+"','"+pname+"','"+pdescription+"','"+pprice+"','"+pimg+"' )"
+                cur.execute(sql)
+                return redirect(url_for('cart'))
+            except:
+                return render_template('category.html',addtocartmsg = "item is not added to cart")
+        else:
             return redirect(url_for('cart'))
-        except:
-            return render_template('category.html',addtocartmsg = "item is not added to cart")
     else:
         flash('Login first to add an item in your cart')
         return redirect(url_for('login'))
@@ -416,6 +419,24 @@ def cart():
         flash('login first to view cart')
         return  redirect(url_for('login'))
 
+
+@app.route('/buy',methods = ['GET','POST'])
+def buy():
+    if 'email' in session:
+        email = session['email']
+        session['productName'] = request.form['pname']
+        session['productPrice'] = request.form['pprice']
+        if request.method =='POST':
+            sql = "select name,mobileno,email,address,city,state,zipcode from users where email = '"+email+"'  "
+            cur = getdbcur()
+            cur.execute(sql)
+            data = cur.fetchone()
+            return render_template('buy.html',userinfo = data)
+        else:
+            return redirect(url_for('home'))
+    else:
+        flash('login first to buy the product.')
+        return redirect(url_for('login'))
 
 if  __name__ == '__main__':
     app.run(debug = True)
