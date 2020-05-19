@@ -1,13 +1,12 @@
 {% extends 'hometemplate.html' %}
 {%  block h1 %}
 
-{% if item %}
-<div class="text-center  font-weight-bold" style="font-size:36px;color: white;"> {{item[0]}}</div>
-{% set temp = item.pop(0) %}
-{% for dict_items in item %}
+{% if data %}
+<div class="text-center  font-weight-bold" style="font-size:36px;color: white;"> {{msg}}</div>
+{% for item in data %}
 <div class="container-fluid ">
     <div class="row" style="margin-top: 30px;">
-    <div class="col-md-4"><img class="img-fluid img-thumbnail" src="{{dict_items['src']}}">
+    <div class="col-md-4"><img class="img-fluid img-thumbnail" src="../uploads/{{item[6]}}" >
     </div>
     <div class="col-4 text-dark">
         <form  class="category"  method="post" action="" style="margin-top:70px;" >
