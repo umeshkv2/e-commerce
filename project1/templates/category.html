@@ -1,20 +1,18 @@
 {% extends 'hometemplate.html' %}
 {%  block h1 %}
 
-{% if item %}
-<div class="text-center  font-weight-bold" style="font-size:36px;color: white;"> {{item[0]}}</div>
-{% set temp = item.pop(0) %}
-{% for dict_items in item %}
+{% if data %}
+<div class="text-center  font-weight-bold" style="font-size:36px;color: white;"> {{msg}}</div>
+{% for item in data %}
 <div class="container-fluid ">
     <div class="row" style="margin-top: 30px;">
-    <div class="col-md-4"><img class="img-fluid img-thumbnail" src="{{dict_items['src']}}">
+    <div class="col-md-4"><img class="img-fluid img-thumbnail" src="../uploads/{{item[6]}}" >
     </div>
     <div class="col-4 text-dark">
-        <form  id="category"  method="post" action="" style="margin-top:70px;" >
-        <input type="text" name="pname"  value="{{dict_items['name']}}" readonly style="border: none; font-size:20px; background:inherit; width:600px ; outline: none;"><br>
-        <input type="text"  name="pdescription" value="{{dict_items['description']}}" readonly style="border: none; font-size:20px; background: inherit; width:800px;outline: none;"><br>
-      <span style="font-size: 20px;">&#x20b9</span> <input type="text" name="pprice"  value="{{dict_items['price']}}" readonly style="border: none; font-size:20px; background: inherit; width:300px;outline: none;"><br>
-          <input type="hidden" name="pimg" value="{{dict_items['src']}}" readonly >
+        <form  id="category" action="buy" method="post" action="" style="margin-top:70px;" >
+        <input type="text"  value="{{item[1]}}" readonly style="border: none; font-size:20px; background:inherit; width:600px ; outline: none;"><br>
+        <input type="text"  value="{{item[4]}}" readonly style="border: none; font-size:20px; background: inherit; width:800px;outline: none;"><br>
+      <span style="font-size: 20px;">&#x20b9</span> <input type="text"  value="{{item[3]}}" readonly style="border: none; font-size:20px; background: inherit; width:300px;outline: none;"><br>
         <input id="buynow" type="submit" class="btn btn-warning" style=" margin-top: 20px; margin-right: 20px;" value="buy now">
         <input id="addcart" type="submit" class="btn btn-warning" style=" margin-top: 20px; " value="add to cart">
       </form>
