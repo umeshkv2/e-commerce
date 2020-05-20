@@ -438,24 +438,27 @@ def upload():
 @app.route('/addtocart',methods = ['GET','POST'])
 def addtocart():
     if 'email' in session:
-        if request.method == 'POST':
-            email = session['email']
-            pname = request.form['pname']
-            pdescription = request.form['pdescription']
-            pprice = request.form['pprice']
-            pimg = request.form['pimg']
-            cur = getdbcur()
-            try:
-                sql = "insert into cart values( '"+email+"','"+pname+"','"+pdescription+"','"+pprice+"','"+pimg+"' )"
-                cur.execute(sql)
-                return redirect(url_for('cart'))
-            except:
-                return render_template('category.html',addtocartmsg = "item is not added to cart")
-        else:
+        email = session['email']
+        id = request.form['id']
+        cur = getdbcur()
+        sql1 = "select * from product where id = '"+id+"'  "
+        cur.execute(sql1)
+        data=cur.fetchone();
+        pname=data[1]
+        pdescription = data[4]
+        pprice = data[3]
+        pimg = data[6]
+        try:
+            sql = "insert into cart values( '"+email+"','"+pname+"','"+pdescription+"','"+pprice+"','"+pimg+"' )"
+            #sql = "insert into cart values( '"+email+"','"+pname+"','"+pdescription+"','"+pprice+"' )"
+            cur.execute(sql)
             return redirect(url_for('cart'))
+        except:
+            return render_template('category.html',addtocartmsg = "item is not added to cart")
     else:
         flash('Login first to add an item in your cart')
         return redirect(url_for('login'))
+
 
 @app.route('/removeitem',methods =['GET','POST'])
 
