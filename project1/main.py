@@ -365,11 +365,41 @@ def buy():
         session['productName'] = request.form['pname']
         session['productPrice'] = request.form['pprice']
         if request.method =='POST':
-            sql = "select name,mobileno,email,address,city,state,zipcode from users where email = '"+email+"'  "
+            sql = "select name,mobileno,address,city,state,zipcode from users where email = '"+email+"'  "
             cur = getdbcur()
             cur.execute(sql)
             data = cur.fetchone()
             return render_template('buy.html',userinfo = data)
+        else:
+            return redirect(url_for('home'))
+    else:
+        flash('login first to buy the product.')
+        return redirect(url_for('login'))
+@app.route('/buyproduct',methods = ['GET','POST'])
+def buyproduct():
+    if 'email' in session:
+        if request.method == 'POST':
+            em = session['email']
+            pn = session['productName']
+            pp = session['productPrice']
+            code = uuid.uuid1()
+            orderid = code.node
+            cn = request.form['cname']
+            mn = request.form['mobile']
+            ad = request.form['address']
+            city = request.form['city']
+            state= request.form['state']
+            zc = request.form['zipcode']
+            cur = getdbcur()
+            try:
+                cur = getdbcur()
+                sql = "insert into orders(orderID,productName,productPrice,customerName,customerMobileno,customerEmail,deliveryAddress,city,state,zipcode) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) "
+                cur.execute(sql,(orderid,pn,pp,cn,mn,em,ad,city,state,zc))
+                session.pop('productName',None)
+                session.pop('productPrice',None)
+                return render_template('buy.html',bmsg = "product confirmation successful..goto payment page")
+            except:
+                return render_template('buy.html',bmsg = "There is an error ,please try again.")
         else:
             return redirect(url_for('home'))
     else:
