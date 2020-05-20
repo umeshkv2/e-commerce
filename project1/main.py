@@ -148,7 +148,7 @@ def logout():
         return redirect(url_for('login'))
 
 
-'''
+
 # Category items section
 @app.route('/womens_fashion')
 def womens_fashion():
@@ -371,7 +371,7 @@ def table_chair():
     return render_template('category.html',item = item)
 
 # catrgory section end
-
+'''
 @app.route('/profile')
 def profile():
    if 'email' in session :
