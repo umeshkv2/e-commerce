@@ -1,6 +1,8 @@
 {% extends 'hometemplate.html' %}
 {%  block h1 %}
-
+{% if addtocartmsg %}
+<h5 class="text-center text-danger">{{addtocartmsg}}</h5>
+{% endif %}
 {% if item %}
 <div class="text-center  font-weight-bold" style="font-size:36px;color: white;"> {{item[0]}}</div>
 {% set temp = item.pop(0) %}
