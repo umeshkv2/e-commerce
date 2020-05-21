@@ -547,5 +547,20 @@ def buyproduct():
         flash('login first to buy the product.')
         return redirect(url_for('login'))
 
+
+@app.route('/myorders',methods = ['GET','POST'])
+def myorders():
+    if 'email' in session:
+        email = session['email']
+        sql = "select * from orders where customerEmail = '"+email+"'  "
+        cur = getdbcur()
+        cur.execute(sql)
+        data = cur.fetchall()
+        return render_template('myorder.html',orderinfo = data)
+    else:
+        flash('login first to view the orders.')
+        return redirect(url_for('login'))
+
+
 if  __name__ == '__main__':
     app.run(debug = True)

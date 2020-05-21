@@ -1,159 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Contact Us</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='myorder.css'>
-    <script src='myorder.js'></script>
-    <link rel="stylesheet" href="../static/myorder.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../static/bootstrap-4.0.0-dist/css/bootstrap.min.css">
-    <script src="../static/jquery.js"></script>
-    <script src="../static/hometemplate.js"></script>
-    <link rel="stylesheet" href="../static/hometemplate.css">
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="../static/bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
-    <script>
-      $(document).ready(function(e) {
-          $("#b1").click(function(e) {
-          $("#menu").toggle();
-          });
-      });
-      </script> 
-  </head>
-<body>
-   <!-- container 1 start -->
-   <div class="header container-fluid p-0">
-    <!-- dropdown menu start -->
-    <div class="dropdown">
-    <button id="b1" ><img src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png"></button>
-    <div class="dropdown-menu" id="menu">
-    <p class="text-center"><b>Shop by category</b><p>
-    <a href="#" class="dropdown-item" >mens fashion</a>
-    <a href="#" class="dropdown-item" >womens fashion</a>
-    <a href="#" class="dropdown-item" >kids</a>
-    <a href="" class="dropdown-item" >skin care</a>
-    <a href="#" class="dropdown-item ">watches</a>
-    <a href="#" class="dropdown-item ">purses</a>
-    <a href="#" class="dropdown-item ">glasses</a>
-    <a href="#" class="dropdown-item ">bags</a>
-    <a href="#" class="dropdown-item ">beds</a>
-    <a href="#" class="dropdown-item ">tables</a>
-    <a href="#" class="dropdown-item ">door</a>
-    <a href="#" class="dropdown-item ">spices</a>
-    <a href="#" class="dropdown-item ">food and vegetables</a>
-    <hr>
-    <p class="text-center" style><b>service</b><p>
-      <a href="#" class="dropdown-item ">your account</a>
-      <a href="#" class="dropdown-item ">customer service</a>
-    </div>
-    <!-- dropdown end -->
-    <form class="search" action="">
-  <input type="text" name ="" placeholder="search here" name="search">
-  <button type="submit"><i class="fa fa-search "></i></button>
-  <span id="cart"><i class='fas fa-shopping-cart' style='font-size:24px'><a href="#">cart</a></i></span>
-</form>
-    </div>
-    </div>
-<!-- header part end -->
-  <!--<div class="button1">
-  <input type="submit" value="< Back">
-  </div>-->
-  <div>
-  <p class="bold-text">My Order</p>
-  </div>
+{% extends 'hometemplate.html' %}
 
-  <div class="container-fluid p-0">
-   <div class="row">
-   <div class="col-4"><img class="div-img" src="https://previews.123rf.com/images/norgal/norgal1612/norgal161200326/67459160-bangkok-thailand-february-15-2016-the-seiko-diver-s-200m-automatic-skx007-with-7s26-movement-and-jub.jpg"></div>
-    <div class="col-4"><p class="text">Taiwan HD 1080P SPY Cam DVR Hidden Watch Camera Mini DV Video Recorder</p></div> 
-    <p class="text">₹1599.99 INR*</p></div>  
-      
+{% block h1 %}
+<div class="container">
+  <h1 class="text-center text-white">Orders</h1>
+{% if orderinfo %}
+{% set ordercount = 1 %}
+{% for data in orderinfo %}
+<div class="orderdetail container-fluid">
+  <h4 class=" text-white" style="margin-left: 50px;">order {{ordercount}}</h4>
+  {% set ordercount = ordercount+1 %}
+<p>order ID: {{data[0]}}  </p>
+<p>product name : {{data[1]}}  </p>
+<p>product price : &#x20b9 {{data[2]}}  </p>
+<p>delivery address: {{data[6]}},{{data[7]}},{{data[8]}},{{data[9]}} </p>
+<p>payment status : {% if data[10] == 0 %} payment not done  {% elif data[10] == 1 %} payment done {% endif %}</p>
+<hr>
 </div>
-  </div>
-  <div class="container-fluid p-0">
-    <div class="row">
-    <div class="col-4"><img class="div-img" src="https://5.imimg.com/data5/VN/RJ/QF/SELLER-651104/isi-marked-safety-shoes-500x500.JPG"></div> 
-    <div class="col-4"><p class="text">Black ISI Marked Safety Shoes, Model Number/Name: SP-B</p></div> 
-    <p class="text">₹6500.50 INR*</p></div>  
- </div>
-   </div>
-   <div class="container-fluid p-0">
-    <div class="row">
-    <div class="col-4"><img class="div-img" src="https://cdn.shopclues.com/images1/thumbnails/94139/320/320/141931095-94139587-1540274456.jpg"></div>
-     <div class="col-4"><p class="text">Yellow Women's Sea Green Casual Full Sleeves Pearl Top</p></div>
-      <p class="text">₹2999.00 INR*</p></div>  
- </div>
-   </div>
-   <br>
-
-  <p class="line">_____________________________________________________________________________________________________________________________________________________________________________________________________________________</p>
-   <div class="container-fluid p-0">
-    <div class="row">
-    <div class="col-4"><p class="text1">Total Amount</p></div> <p class="text1"></p>
-    <div class="col-4"><p class="text1">₹11,099.49 INR*</p></div></div>  
-   </div>
-  </div>
-  <br>
-  <br>
-  <div class="button2">
-    <input type="submit" value="PAY">
-    </div>
-  
-    <div class="container-fluid p-0  ">
-
-      <footer class="footer-distributed">
-      <div class="footer-left">
-        
-      <h3>About<span>Service</span></h3>
-      
-      <p class="footer-links">
-        <a href="#">Home</a>
-        |
-        <a href="#">Blog</a>
-        |
-        <a href="#">About</a>
-        |
-        <a href="#">Contact</a>
-      </p>
-      
-      <p class="footer-company-name">© 2020 Service Pvt. Ltd.</p>
-      </div>
-      
-      <div class="footer-center">
-      <div>
-        <i class="fa fa-map-marker"></i>
-          <p><span>00 - Jaipur,
-           Mansarover, Jaipur</span>
-          Rajasthan, India - 302020</p>
-      </div>
-      
-      <div>
-        <i class="fa fa-phone"></i>
-        <p>+91 0000000000</p>
-      </div>
-      <div>
-        <i class="fa fa-envelope"></i>
-        <p><a href="abcdefghi@gmail.com">abcdefghi@gmail.com</a></p>
-      </div>
-      </div>
-      <div class="footer-right">
-      <p class="footer-company-about">
-        <span>About the company</span>
-        We strive to have a positive impact on customers, employees, small businesses, the economy, and communities.</p>
-      <div class="footer-icons">
-        <a href="#"><i class='fab fa-facebook-f'></i></a>
-        <a href="#"><i class='fab fa-instagram'></i></a>
-        <a href="#"><i class='fab fa-linkedin'></i></a>
-        <a href="#"><i class='fab fa-whatsapp'></i></a>
-        <a href="#"><i class='fab fa-twitter'></i></a>
-        </div>
-      </div>
-      </footer>
-      </div>s
-
-    </body>
-    </html>
+{% endfor %}
+{% endif %}
+</div>
+{% endblock %}
