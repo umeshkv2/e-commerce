@@ -53,7 +53,13 @@
     <a href="watches" class="dropdown-item ">watches</a>
     <a href="bags" class="dropdown-item ">bags</a>
     <a href="beds" class="dropdown-item ">beds</a>
+<<<<<<< HEAD
     <a href="table_chair" class="dropdown-item ">tables & chair</a>
+=======
+    <a href="clean_household" class="dropdown-item ">cleaning household</a>
+    <a href="table_chair" class="dropdown-item ">tables & cahir</a>
+    <a href="sofa" class="dropdown-item ">sofa</a>
+>>>>>>> 34ebef5e4b5531f5052b4050dc3c3880b93d8b97
     <a href="food" class="dropdown-item ">food and vegetables</a>
     <hr>
     <p class="text-center" style><b>service</b><p>
@@ -69,12 +75,13 @@
     <form class="search" action="search">
   <input type="text" name ="" placeholder="search here" name="searchbar">
   <button type="submit"><i class="fa fa-search "></i></button>
-<a  href="cart" style="text-decoration: none; color: black;"> <span id="cart"><i class='fas fa-shopping-cart' style='font-size:24px'><code style="color:white;font-size: 16px;">cart</code></i></span></a>
-  {% if userdata %}
-  <a  href="profile" style="text-decoration: none; color: black;"> <span id="login"><i class='fa fa-user' style='font-size:24px'><code style="color:white;font-size: 16px;">{{userdata[0]}}</code></i></span></a>
-  {% elif directhome %}
-  <a  href="login" style="text-decoration: none; color: black;"> <span id="login"><i class='fa fa-user' style='font-size:24px'><code style="color:white;font-size: 16px;">login</code></i></span></a>
-  {% endif %}
+
+  <span id="cart"><i class='fas fa-shopping-cart' style='font-size:24px'><a href="cart">cart</a></i></span>
+      {% if session['email'] %}
+      <span id="login"><i class='fa fa-user' style='font-size:24px'><a style="color:white;text-decoration:none;font-size:16px" href="login">login</a></i></span>
+      {% else %}
+      <span id="logout"><i class='fa fa-user' style='font-size:24px'><a style="color:white;text-decoration:none;font-size:16px" href="logout">logout</a></i></span>
+     {% endif %}
 </form>
     </div>
     </div>
@@ -120,7 +127,7 @@
 <!-- carousel end -->
   <!-- images part start -->
 
-<div class="container-fluid ">
+<div class="container-fluid p-0 ">
 <h1 class="text-center">Fashion</h1>
 <div class=" row">
 <div class="col-sm d-block ">
@@ -136,6 +143,7 @@
 <div class="container-fluid ">
 <h1 class="text-center">Grocery</h1>
 <div class="row">
+
 <div class="col-sm d-block "><a class="text_none" href="clean_household"><p class="img_text">Cleaning and household</p><img class="div_img img-fluid" src="https://etenterprises.net.au/wp-content/uploads/2016/07/House-Home-Flat-Cleaning-4.jpg" ></a></div>
 <div class="col-sm d-block "><a class="text_none" href="food"><p class="img_text">Food products</p><img class="div_img img-fluid" src="https://i.gadgets360cdn.com/large/Patanjali-food-product_1504679062833.jpg?downsize=600:*&output-quality=80"></a></div>
 <div class="col-sm d-block "><a class="text_none" href="dairy_product"><p class="img_text">Dairy Products</p><img class="div_img img-fluid" src="https://5.imimg.com/data5/UI/MM/TI/SELLER-11201646/amul-dairy-products-500x500-500x500.jpg" ></a></div>
