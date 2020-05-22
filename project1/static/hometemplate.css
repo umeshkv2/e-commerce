@@ -77,7 +77,7 @@ body {
     height: 500px;
   }
   
-.row .col-4 .img_text {
+.row .col-sm .img_text {
 	text-align: center;
 	font-weight: bold;
 	font-size: 20px;
@@ -86,14 +86,14 @@ body {
 
 }
 
-.row .col-4 .div_img {
+.row .col-sm .div_img {
 	height: 350px;
 	width: 488px;
 	border-radius: 5px;
 	border:5px solid;
 	
 }
-.row .col-4 .text_none {
+.row .col-sm .text_none {
 	text-decoration: none;
 	color: white;
 	

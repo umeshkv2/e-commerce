@@ -1,16 +1,13 @@
-import uuid
-import os
+import os,uuid
 from flask import Flask,render_template,request,session,redirect,url_for,flash
 #importing  the database library
 from databaselib import getdbcur
 from flask_mail import Mail, Message
-from itsdangerous import URLSafeTimedSerializer,SignatureExpired
-
+from random import randint
 app = Flask(__name__)
 # adding session key
 app.secret_key = "testing4ecommerce"
 #adding config for mail
-secret_url = URLSafeTimedSerializer(app.secret_key)
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = 'umesh.us.suman@gmail.com'
@@ -21,7 +18,18 @@ mail = Mail(app)
 
 @app.route('/')
 def home():
-    return render_template('hometemplate.html')
+    if 'email' in session:
+        try:
+            em = session['email']
+            sql = "select name from users where email = '"+em+"' "
+            cur =getdbcur()
+            cur.execute(sql)
+            userdata = cur.fetchone()
+            return render_template('hometemplate.html',userdata = userdata )
+        except:
+            return render_template('hometemplate.html',directhome = True)
+    else:
+        return render_template('hometemplate.html' ,directhome = True)
 
 @app.route('/changepassword',methods = ['GET','POST'])
 def changepassword():
@@ -48,16 +56,18 @@ def changepassword():
 @app.route('/forget',methods = ['GET','POST'])
 def forget():
     if request.method == 'POST':
-        em = request.form['email']
-        cur = getdbcur()
-        sql = "select * from users where email = '"+em+"' "
-        cur.execute(sql)
-        n = cur.rowcount
-        if n == 1 :
-            session['email'] = em
-            return render_template('confirmpassword.html')
-        else :
-            return render_template('forget.html',lmsg = "Incorrect Email")
+        try:
+            em = request.form['email']
+            cur = getdbcur()
+            sql = "select password from users where email = '"+em+"' "
+            cur.execute(sql)
+            forgpass = cur.fetchone()
+            cmsg = Message('forgeted password', sender = 'umesh.us.suman@gmail.com', recipients = ['{}'.format(em)])
+            cmsg.body = "Your forgeted password is: {}".format(forgpass[0])
+            mail.send(cmsg)
+            return render_template('forget.html',lmsg = 'password sent to your mail')
+        except :
+            return render_template('forget.html',lmsg = "Either email is not registered or there is some error")
     else :
         return render_template('forget.html')
 
@@ -98,16 +108,15 @@ def contact():
     return render_template('contact.html')
 
 @app.route('/register',methods=['GET','POST'])
+@app.route('/register',methods=['GET','POST'])
 def register():
     if request.method == 'POST':
-
         try:
             nm = request.form['name']
             em = request.form['email']
             ph = request.form['mobileno']
-            ps = request.form['password']
-            code = uuid.uuid1()
-            uc = code.node
+            ps = request.form['pass']
+            uc = randint(100000, 999999)
             cmsg = Message('verification code', sender = 'umesh.us.suman@gmail.com', recipients = ['{}'.format(em)])
             cmsg.body = "Your verification code is: {}".format(uc)
             mail.send(cmsg)
@@ -128,12 +137,16 @@ def login():
         em = request.form['email']
         ps = request.form['password']
         cur = getdbcur()
-        sql = "select * from users where email = '"+em+"' and password = '"+ps+"' "
+        sql = "select email_confirm from users where email = '"+em+"' and password = '"+ps+"' "
         cur.execute(sql)
         n = cur.rowcount
         if n == 1 :
-            session['email'] = em
-            return redirect(url_for('profile'))
+            data = cur.fetchone()
+            if data[0] == 1:
+                session['email'] = em
+                return redirect(url_for('profile'))
+            else:
+                return render_template('login.html',lmsg = "please verify your email first before login!")
         else :
             return render_template('login.html',lmsg = "Incorrect Email or password!")
     else :
@@ -302,7 +315,7 @@ def addtocart():
         cur = getdbcur()
         sql1 = "select * from product where id = '"+pid+"'  "
         cur.execute(sql1)
-        data=cur.fetchone();
+        data=cur.fetchone()
         pname=data[1]
         pdescription = data[4]
         pprice = data[3]
@@ -369,7 +382,7 @@ def buy():
             cur = getdbcur()
             sql1 = "select * from product where id = '"+id+"'  "
             cur.execute(sql1)
-            data=cur.fetchone();
+            data=cur.fetchone()
             pname=data[1]
             pprice = data[3]
             session['productName'] = pname
