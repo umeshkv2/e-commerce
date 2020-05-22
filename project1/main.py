@@ -133,7 +133,7 @@ def login():
         n = cur.rowcount
         if n == 1 :
             session['email'] = em
-            return redirect(url_for('profile'))
+            return redirect(url_for('home'))
         else :
             return render_template('login.html',lmsg = "Incorrect Email or password!")
     else :
@@ -202,6 +202,26 @@ def beauty():
     cur.execute(sql)
     data = cur.fetchall()
     return render_template("category.html",data=data , msg="skin care")
+
+@app.route('/clean_household')
+def clean_household():
+
+    sql = "select * from product where category='clean_household' "
+    cur = getdbcur()
+    cur.execute(sql)
+    data = cur.fetchall()
+    return render_template("category.html",data=data , msg="cleaning household")
+
+
+@app.route('/sofa')
+def sofa():
+
+    sql = "select * from product where category='sofa' "
+    cur = getdbcur()
+    cur.execute(sql)
+    data = cur.fetchall()
+    return render_template("category.html",data=data , msg="sofa")
+
 
 @app.route('/bags')
 def bags():
