@@ -4,11 +4,9 @@
 <div class="container">
   <h1 class="text-center text-white">Orders</h1>
 {% if orderinfo %}
-{% set ordercount = 1 %}
 {% for data in orderinfo %}
 <div class="orderdetail container-fluid">
-  <h4 class=" text-white" style="margin-left: 50px;">order {{ordercount}}</h4>
-  {% set ordercount = ordercount+1 %}
+  <h4 class=" text-white" style="margin-left: 50px;">order {{loop.index}}</h4>
 <p>order ID: {{data[0]}}  </p>
 <p>product name : {{data[1]}}  </p>
 <p>product price : &#x20b9 {{data[2]}}  </p>

@@ -16,17 +16,18 @@
   
     <div class="profile-block">
         <div class="panel text-center">
-          <div class="user-heading"> <a href="#"><img src="http://cumbrianrun.co.uk/wp-content/uploads/2014/02/default-placeholder-300x300.png" alt="" title=""></a>
+          <div class="user-heading"> <a href="#"></a>
             {% for item in data %}
-            <h1>{{item[0]}}</h1>
-            <p>{{item[1]}}</p>
-            <p>{{item[2]}}</p>
+            <h1><code style="color: black;">Email:</code>{{item[0]}}</h1>
+            <p><code style="color: black;">Name:</code>{{item[1]}}</p>
+            <p><code style="color: black;">Contact No.:</code>{{item[2]}}</p>
             {% endfor %}
           </div>
           <ul class="nav nav-pills nav-stacked">
             <li><a href="editprofile"><i class="fa fa-user"></i>Edit Profile</a></li>
+            <li><a href={{ url_for('home') }}><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
             <li><a href="changepassword"><i class="fa fa-pencil-square-o"></i>Change Password</a></li>
-            <li><a href="myorder"><i class="fa fa-shopping-cart" aria-hidden="true"></i>My Order</a></li>
+            <li><a href="myorders"><i class="fa fa-shopping-cart" aria-hidden="true"></i>My Order</a></li>
             <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i>Help</a></li>
             <li><a href="logout"><i class="fa fa-sign-out"></i>Logout</a></li>
           </ul>

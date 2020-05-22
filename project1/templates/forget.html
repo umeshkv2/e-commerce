@@ -8,11 +8,12 @@
 	</head>
 	<body>
 		<form class="loginform" action="forget" method="post">
-			<h2>Forget Password</h2>
+			<h2 style="color:white;">Forget Password</h2>
 			<input type="email" name="email" placeholder="Email">
 			<input type="submit" name="" value="Continue">
 			{% if lmsg %}
 			<h5 style="color: red;">{{lmsg}}</h5>
+				<a id="a2" href="login">login</a>
 			{% endif %}
 		</form>
 	</body>
