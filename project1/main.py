@@ -18,7 +18,6 @@ mail = Mail(app)
 
 @app.route('/')
 def home():
-    if 'email' in session:
         return render_template('hometemplate.html' )
 
 @app.route('/changepassword',methods = ['GET','POST'])
@@ -81,7 +80,7 @@ def search():
     if request.method == 'POST':
         items = request.form['searchbar']
         cur = getdbcur()
-        sql = "select *  from product where product_name like %'"+items+"' OR '"+items+"'%  OR %'"+items+"'% "
+        sql = "select *  from product where name,description like '%"+items+"%' "
         cur.execute(sql)
         n = cur.rowcount
         if n >= 1:
@@ -131,8 +130,12 @@ def login():
         cur.execute(sql)
         n = cur.rowcount
         if n == 1 :
-            session['email'] = em
-            return redirect(url_for('home'))
+            data = cur.fetchone()
+            if data[0] == 1:
+                session['email'] = em
+                return redirect(url_for('profile'))
+            else:
+                return render_template('login.html',lmsg = "please verify your email first before login!")
         else :
             return render_template('login.html',lmsg = "Incorrect Email or password!")
     else :
