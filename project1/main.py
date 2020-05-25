@@ -4,6 +4,7 @@ from flask import Flask,render_template,request,session,redirect,url_for,flash
 from databaselib import getdbcur
 from flask_mail import Mail, Message
 from random import randint
+from werkzeug.utils import secure_filename
 app = Flask(__name__)
 # adding session key
 app.secret_key = "testing4ecommerce"
@@ -15,7 +16,8 @@ app.config['MAIL_USERNAME'] = 'umesh.us.suman@gmail.com'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
-
+#configure upload folder
+app.config['UPLOAD_FOLDER']='./uploads'
 @app.route('/')
 def home():
         return render_template('hometemplate.html' )
@@ -78,14 +80,14 @@ def verify():
 @app.route('/search',methods = ['GET','POST'])
 def search():
     if request.method == 'POST':
-        items = request.form['searchbar']
+        items = request.form['searchtext']
         cur = getdbcur()
-        sql = "select *  from product where name,description like '%"+items+"%' "
+        sql = "select *  from product where name like '%"+items+"%'  OR description like '%"+items+"%' "
         cur.execute(sql)
         n = cur.rowcount
         if n >= 1:
             data = cur.fetchall()
-            return render_template('searchitems.html', searchdata = data)
+            return render_template('searchitems.html', searchdata = data, searchmsg = "products related to search!")
         else :
             return render_template('seachitems.html',searchmsg = "There is no item is available that you search,try different name.")
     else :
@@ -284,8 +286,6 @@ def editprofile():
     else :
          render_template('editprofile.html',errormsg="You can't change password  ..Login first!")
 
-
-app.config["IMAGE_UPLOADS"]='../project1/uploads'
 @app.route('/upload',methods=['GET','POST'])
 def upload():
     if 'email' in session :
@@ -296,7 +296,8 @@ def upload():
               pr = request.form['price']
               ds = request.form['description']
               im =  request.files['file']
-              im.save(os.path.join(app.config["IMAGE_UPLOADS"],im.filename))
+              im = secure_filename(im.filename)
+              im.save(os.path.join(app.config['UPLOAD_FOLDER'],im.filename))
               cur = getdbcur()
               sql = "insert into product(name,category,price,description,email,filename) values(%s,%s,%s,%s,%s,%s)"
               cur.execute(sql,(nm,ca,pr,ds,email,im.filename))

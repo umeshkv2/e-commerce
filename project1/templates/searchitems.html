@@ -1,0 +1,27 @@
+{% extends 'hometemplate.html' %}
+{%  block h1 %}
+
+{% if searchdata %}
+<div class="text-center  font-weight-bold" style="font-size:24px;color: white;"> {{searchmsg}}</div>
+{% for item in searchdata %}
+<div class="container-fluid ">
+    <div class="row" style="margin-top: 30px;">
+    <div class="col-md-4"><img class="img-fluid img-thumbnail" src="../uploads/{{item[5]}}" >
+    </div>
+    <div class="col-4 text-dark">
+        <form  id="category"  method="post" action="" style="margin-top:70px;" >
+        <input type="text"  value="{{item[1]}}" readonly style="border: none; font-size:20px; background:inherit; width:600px ; outline: none;"><br>
+        <input type="text"  value="{{item[4]}}" readonly style="border: none; font-size:20px; background: inherit; width:800px;outline: none;"><br>
+        <input type="hidden"  name="id" value="{{item[0]}}">
+      <span style="font-size: 20px;">&#x20b9</span> <input type="text"  value="{{item[3]}}" readonly style="border: none; font-size:20px; background: inherit; width:300px;outline: none;"><br>
+        <input  type="submit" class="buynow btn btn-warning" style=" margin-top: 20px; margin-right: 20px;" value="buy now">
+        <input  type="submit" class="addcart btn btn-warning" style=" margin-top: 20px; " value="add to cart">
+      </form>
+    </div>
+      </div>
+ </div>
+
+ {% endfor %}
+ {% endif %}
+ <p style="margin: 20px;"></p>
+ {%  endblock %}

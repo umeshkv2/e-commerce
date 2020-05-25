@@ -80,11 +80,11 @@
                 <a class="navbar-brand" style="font-size: 30px; ;" href="#"><b>E-Commerce</b></a>
             </div>
            
-          <form class="navbar-form navbar-left" action="search">
+          <form class="navbar-form navbar-left" action="search" id="searchform" method="post">
                <div class="form-group">
                  <div class="input-group">
-                     <input type="search" name="search" id="" placeholder="Search Anything Here..." class="form-control" style="width: 300px; ">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                     <input type="text" name="searchtext" id="" placeholder="Search Anything Here..." class="form-control" style="width: 300px; ">
+                     <button type="submit" id="searchbutton" form="searchform" class="input-group-addon glyphicon glyphicon-search"></button>
                  </div>
                </div>
                {% if session['email'] %}
@@ -100,11 +100,11 @@
         </nav>   
         <nav class="navbar navbar-inverse" style="margin-bottom: 0px; border-top: hidden;">
           <p class="footer-links">
-            <a href="men_fashion" style="color:white;text-decoration:none;font-size:16px;">Men fashion &nbsp|&nbsp</a>
+            <a href="mens_fashion" style="color:white;text-decoration:none;font-size:16px;">Men fashion &nbsp|&nbsp</a>
             
             <a href="womens_fashion" style="color:white;text-decoration:none;font-size:16px;">Women fashion &nbsp|&nbsp</a>
   
-            <a href="grocery" style="color:white;text-decoration:none;font-size:16px;">Kid's fashion &nbsp|&nbsp</a>
+            <a href="kids_fashion" style="color:white;text-decoration:none;font-size:16px;">Kid's fashion &nbsp|&nbsp</a>
             
             <a href="beauty" style="color:white;text-decoration:none;font-size:16px;">Beauty &nbsp|&nbsp</a>
             
@@ -163,40 +163,40 @@
   <div class="container-fluid p-0 ">
   <h1 class="text-center">Fashion</h1>
   <div class="row">
-  <div class="col-4">
+  <div class="col-sm-4">
   <!-- DO your image work here
    like writing heading and post image -->
    <a class="text_none" href="womens_fashion"><p class="img_text">Women fashion</p><img class="div_img img-fluid " src="https://images.pexels.com/photos/928000/pexels-photo-928000.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"></a>
   </div>
-  <div class="col-4"><a class="text_none" href="mens_fashion"><p class="img_text">Men fashion</p><img class="div_img img-fluid " src="https://onpointfresh.com/wp-content/uploads/2016/10/minimalist-mens-fashion.png"></a></div>
-  <div class="col-4"><a class="text_none" href="kids_fashion"><p class="img_text">kids fashion</p><img class="div_img img-fluid " src="https://images.pexels.com/photos/1619697/pexels-photo-1619697.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" ></a></div>
+  <div class="col-sm-4"><a class="text_none" href="mens_fashion"><p class="img_text">Men fashion</p><img class="div_img img-fluid " src="https://onpointfresh.com/wp-content/uploads/2016/10/minimalist-mens-fashion.png"></a></div>
+  <div class="col-sm-4"><a class="text_none" href="kids_fashion"><p class="img_text">kids fashion</p><img class="div_img img-fluid " src="https://images.pexels.com/photos/1619697/pexels-photo-1619697.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" ></a></div>
   </div>
   </div>
   
   <div class="container-fluid p-0">
   <h1 class="text-center">Grocery</h1>
   <div class="row">
-  <div class="col-4"><a class="text_none" href="clean_household"><p class="img_text">Cleaning and household</p><img class="div_img img-fluid " src="https://etenterprises.net.au/wp-content/uploads/2016/07/House-Home-Flat-Cleaning-4.jpg" ></a></div>
-  <div class="col-4"><a class="text_none" href="food"><p class="img_text">Food products</p><img class="div_img img-fluid" src="https://i.gadgets360cdn.com/large/Patanjali-food-product_1504679062833.jpg?downsize=600:*&output-quality=80"></a></div>
-  <div class="col-4"><a class="text_none" href="dairy_product"><p class="img_text">Dairy Products</p><img class="div_img img-fluid" src="https://5.imimg.com/data5/UI/MM/TI/SELLER-11201646/amul-dairy-products-500x500-500x500.jpg" ></a></div>
+  <div class="col-sm-4"><a class="text_none" href="clean_household"><p class="img_text">Cleaning and household</p><img class="div_img img-fluid " src="https://etenterprises.net.au/wp-content/uploads/2016/07/House-Home-Flat-Cleaning-4.jpg" ></a></div>
+  <div class="col-sm-4"><a class="text_none" href="food"><p class="img_text">Food products</p><img class="div_img img-fluid" src="https://i.gadgets360cdn.com/large/Patanjali-food-product_1504679062833.jpg?downsize=600:*&output-quality=80"></a></div>
+  <div class="col-sm-4"><a class="text_none" href="dairy_product"><p class="img_text">Dairy Products</p><img class="div_img img-fluid" src="https://5.imimg.com/data5/UI/MM/TI/SELLER-11201646/amul-dairy-products-500x500-500x500.jpg" ></a></div>
   </div>
   </div>
   
   <div class="container-fluid p-0 ">
   <h1 class="text-center">Beauty & Accessories</h1>
   <div class="row">
-  <div class="col-4"><a class="text_none" href="beauty"><p class="img_text ">Beauty</p><img class="div_img img-fluid" src="https://image.freepik.com/free-vector/beauty-accessories-set_23-2147813018.jpg" ></a> </div>
-  <div class="col-4"><a class="text_none" href="bags"><p class="img_text ">Bags</p><img class="div_img img-fluid" src="https://images.unsplash.com/photo-1573878930082-8f0fe89a2393?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"></a></div>
-  <div class="col-4"><a class="text_none" href="watches"><p class="img_text ">Watches</p><img class="div_img img-fluid" src="https://img10.joybuy.com/N0/s560x560_jfs/t1/39285/20/13590/537288/5d4a8e72E2b183562/c4d2305426d2f575.jpg.dpg" ></a></div>
+  <div class="col-sm-4"><a class="text_none" href="beauty"><p class="img_text ">Beauty</p><img class="div_img img-fluid" src="https://image.freepik.com/free-vector/beauty-accessories-set_23-2147813018.jpg" ></a> </div>
+  <div class="col-sm-4"><a class="text_none" href="bags"><p class="img_text ">Bags</p><img class="div_img img-fluid" src="https://images.unsplash.com/photo-1573878930082-8f0fe89a2393?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"></a></div>
+  <div class="col-sm-4"><a class="text_none" href="watches"><p class="img_text ">Watches</p><img class="div_img img-fluid" src="https://img10.joybuy.com/N0/s560x560_jfs/t1/39285/20/13590/537288/5d4a8e72E2b183562/c4d2305426d2f575.jpg.dpg" ></a></div>
   </div>
   </div>
   
   <div class="container-fluid p-0 ">
     <h1 class="text-center">Furniture</h1>
   <div class="row">
-  <div class="col-4"><a class="text_none" href="beds"><p class="img_text ">Bed</p><img class="div_img img-fluid" src="https://i.pinimg.com/236x/c6/55/4e/c6554ec7b1a8892f49e305cc1c7bf151.jpg" ></a></div>
-  <div class="col-4"><a class="text_none" href="sofa"><p class="img_text ">Sofa</p><img class="div_img img-fluid" src="https://images2.alphacoders.com/270/thumb-1920-270990.jpg" class="rounded"></a></div>
-  <div class="col-4"><a class="text_none" href="table_chair"><p class="img_text">Table & chairs</p><img class="div_img img-fluid" src="https://cdn.pixabay.com/photo/2016/12/30/07/59/kitchen-1940174__340.jpg" ></a></div>
+  <div class="col-sm-4"><a class="text_none" href="beds"><p class="img_text ">Bed</p><img class="div_img img-fluid" src="https://i.pinimg.com/236x/c6/55/4e/c6554ec7b1a8892f49e305cc1c7bf151.jpg" ></a></div>
+  <div class="col-sm-4"><a class="text_none" href="sofa"><p class="img_text ">Sofa</p><img class="div_img img-fluid" src="https://images2.alphacoders.com/270/thumb-1920-270990.jpg" class="rounded"></a></div>
+  <div class="col-sm-4"><a class="text_none" href="table_chair"><p class="img_text">Table & chairs</p><img class="div_img img-fluid" src="https://cdn.pixabay.com/photo/2016/12/30/07/59/kitchen-1940174__340.jpg" ></a></div>
   </div>
   </div>
   
