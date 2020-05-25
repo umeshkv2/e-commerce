@@ -17,7 +17,7 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
 #configure upload folder
-app.config['UPLOAD_FOLDER']='./uploads'
+app.config['UPLOAD_FOLDER']='./static/uploads'
 @app.route('/')
 def home():
         return render_template('hometemplate.html' )
@@ -288,19 +288,18 @@ def editprofile():
 
 @app.route('/upload',methods=['GET','POST'])
 def upload():
-    if 'email' in session :
-        email = session['email']
+    if 'email'  in session :
         if request.method == 'POST':
               nm = request.form['name']
               ca = request.form['category']
               pr = request.form['price']
               ds = request.form['description']
               im =  request.files['file']
-              im = secure_filename(im.filename)
-              im.save(os.path.join(app.config['UPLOAD_FOLDER'],im.filename))
+              filename = secure_filename(im.filename)
+              im.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
               cur = getdbcur()
-              sql = "insert into product(name,category,price,description,email,filename) values(%s,%s,%s,%s,%s,%s)"
-              cur.execute(sql,(nm,ca,pr,ds,email,im.filename))
+              sql = "insert into product(name,category,price,description,filename) values(%s,%s,%s,%s,%s)"
+              cur.execute(sql,(nm,ca,pr,ds,im.filename))
               n = cur.rowcounts
               if n == 1 :
                   msg = "Uploaded Successful!"
