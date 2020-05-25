@@ -11,10 +11,13 @@ body {
   margin-left: 10px;
   cursor: pointer;
 }
+.dropdown-menu a:hover {
+	background-color: blue;
+}
 #b1
 {
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   background: #fff;
   cursor: pointer;
   border-radius: 3px;
@@ -29,13 +32,13 @@ body {
 .search
 {
   float: right;
-  margin-right: 10px;
+  margin-right: 100px;
   margin-top: 5px;
 }
 .search input[type="text"]
 {
-  border-radius: 5px;
-  width:400px;
+  border-radius: 20px;
+  width:500px;
   padding-left: 10px;
 }
 .search button
@@ -61,6 +64,11 @@ body {
   text-decoration: none;
 }
 
+.user {
+margin-left: 10px;
+}
+
+
 
 #caro
 {
@@ -77,7 +85,7 @@ body {
     height: 500px;
   }
   
-.row .col-sm .img_text {
+.row .col-4 .img_text {
 	text-align: center;
 	font-weight: bold;
 	font-size: 20px;
@@ -86,14 +94,14 @@ body {
 
 }
 
-.row .col-sm .div_img {
+.row .col-4 .div_img {
 	height: 350px;
 	width: 488px;
 	border-radius: 5px;
 	border:5px solid;
 	
 }
-.row .col-sm .text_none {
+.row .col-4 .text_none {
 	text-decoration: none;
 	color: white;
 	
@@ -143,6 +151,18 @@ footer{
 	margin: 0;
 }
  
+.footer-distributed .footer-links{
+	color:  #ffffff;
+	margin: 20px 0 12px;
+}
+
+.footer-distributed .footer-links a{
+	display:inline-block;
+	line-height: 1.8;
+	text-decoration: none;
+	color:  inherit;
+}
+ 
 /* The company logo */
  
 .footer-distributed .footer-left img{
@@ -155,17 +175,7 @@ footer{
  
 /* Footer links */
  
-.footer-distributed .footer-links{
-	color:  #ffffff;
-	margin: 20px 0 12px;
-}
- 
-.footer-distributed .footer-links a{
-	display:inline-block;
-	line-height: 1.8;
-	text-decoration: none;
-	color:  inherit;
-}
+footer-distributed
  
 .footer-distributed .footer-company-name{
 	color:  #8f9296;
