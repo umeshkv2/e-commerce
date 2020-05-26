@@ -89,7 +89,7 @@ def search():
             data = cur.fetchall()
             return render_template('searchitems.html', searchdata = data, searchmsg = "products related to search!")
         else :
-            return render_template('seachitems.html',searchmsg = "There is no item is available that you search,try different name.")
+            return render_template('searchitems.html',searchmsg = "There is no item is available that you search,try different name.")
     else :
         return redirect(url_for('home'))
 
