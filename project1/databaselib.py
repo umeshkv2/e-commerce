@@ -2,9 +2,9 @@ import pymysql
 def getdbcur():
     conn = pymysql.connect(host='db4free.net',
                                                 port = 3306,
-                                                user = 'umeshkv2',
-                                                passwd = 'umeshkv2',
-                                                db = 'multikart',
+                                                user = 'sql6.freesqldatabase.com',
+                                                passwd = 'jmNxpKMPip',
+                                                db = 'sql6422566',
                                                 autocommit = True)
     cur = conn.cursor()
     return cur
